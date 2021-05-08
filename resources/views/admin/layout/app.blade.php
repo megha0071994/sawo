@@ -23,6 +23,7 @@
       <!-- Daterange picker -->
       <link rel="stylesheet" href="{{ url('/') }}/public/admin-assets/plugins/daterangepicker/daterangepicker.css">
       <!-- summernote -->
+      <link href="{{ url('/public/admin-assets/plugins/toastr/toastr.min.css') }}" rel="stylesheet">
       <link rel="stylesheet" href="{{ url('/') }}/public/admin-assets/plugins/summernote/summernote-bs4.min.css">
       <link rel="stylesheet" href="{{ url('/') }}/public/admin-assets/plugins/toastr/toastr.min.css">
       <link rel="stylesheet" href="{{ url('/') }}/public/admin-assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
@@ -119,6 +120,18 @@
                      <a href="" class="nav-link active">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p> Dashboard </p>
+                     </a>
+                  </li>
+                  <li class="nav-item">
+                     <a href="" class="nav-link active">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p> Dashboard </p>
+                     </a>
+                  </li>
+                  <li class="nav-item">
+                     <a href="{{ url('admin/products/category') }}" class="nav-link">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p> Manage Category </p>
                      </a>
                   </li>
                   <li class="nav-item active">
@@ -218,9 +231,13 @@
 	<script src="{{ url('/') }}/public/admin-assets/dist/js/adminlte.js"></script>
 	<!-- AdminLTE for demo purposes -->
 	<script src="{{ url('/') }}/public/admin-assets/dist/js/demo.js"></script>
-	<script src="{{ url('/') }}/public/admin-assets/plugins/toastr/toastr.min.js"></script>
+	
 	<script src="{{ url('/') }}/public/admin-assets/plugins/datatables/jquery.dataTables.min.js"></script>
-	<?php
+	
+   <script src="{{ url('/public/admin-assets/plugins/toastr/jquery.toaster.js') }}"></script>
+   <script src="{{ url('/public/admin-assets/plugins/toastr/toastr.min.js') }}"></script>
+   <script src="{{ url('/public/admin-assets/custom/js/custom.js') }}"></script>
+   <?php
 	// if($this->session->flashdata('success')):
 	?>
 	<!-- <script>

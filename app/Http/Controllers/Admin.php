@@ -6,11 +6,6 @@ use Illuminate\Http\Request;
 
 class Admin extends Controller
 {
-    public function index()
-	{
-		return view('admin.auth.login');
-	}
-	
 	public function dashboard()
 	{
 		$data = array(
@@ -27,6 +22,17 @@ class Admin extends Controller
 			"page_title2" => "Category"
 		);
 		return view('admin.category')->with($data);
+	}
+	public function getJSON($type) {
+		if($type=='category') {
+            $arr=array(
+                array('data'=>'id','name'=>'id'),
+                array('data'=>'name','name'=>'name'),
+                array('data'=>'status','name'=>'status'),
+                array('data'=>'action','name'=>'action'),
+            );
+        }
+		echo json_encode($arr);
 	}
 	
 }
