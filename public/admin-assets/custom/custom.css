@@ -1,0 +1,30 @@
+.dataTables_paginate.paging_simple_numbers a {
+	margin: 3px;
+	background: #007bff;
+	padding: 1px 4px;
+	color: white;
+	border-radius: 2px;
+	cursor:pointer;
+}
+.navbar-white{
+	background: #fcc836;
+}
+.navbar-light .navbar-nav .nav-link {
+    color: rgba(0, 0, 0, .8);
+}
+[class*=sidebar-dark-] {
+    background-color: rgba(0, 0, 0, .8);
+}
+.sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active, .sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active {
+    background-color: #fcc836;
+    color: rgba(0, 0, 0, .8);
+}
+.btn-primary, .btn-primary:hover, .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:focus{
+	color: rgba(0, 0, 0, .8);
+    background-color: #fcc836;
+    border-color: #fcc836;
+}
+.navbar-badge{
+	right:0;
+	top:14px;
+}
