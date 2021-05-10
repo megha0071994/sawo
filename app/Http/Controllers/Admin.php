@@ -23,10 +23,21 @@ class Admin extends Controller
 		);
 		return view('admin.category')->with($data);
 	}
-	public function getJSON($type) {
+	
+	public function getJSON($type) 
+	{
 		if($type=='category') {
             $arr=array(
                 array('data'=>'id','name'=>'id'),
+                array('data'=>'name','name'=>'name'),
+                array('data'=>'status','name'=>'status'),
+                array('data'=>'action','name'=>'action'),
+            );
+        }
+		if($type=='sub-category') {
+            $arr=array(
+                array('data'=>'id','name'=>'id'),
+                array('data'=>'cat_id','name'=>'cat_id'),
                 array('data'=>'name','name'=>'name'),
                 array('data'=>'status','name'=>'status'),
                 array('data'=>'action','name'=>'action'),
