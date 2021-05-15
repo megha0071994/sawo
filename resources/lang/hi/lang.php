@@ -1,0 +1,23 @@
+<?php
+return [
+	'category_successfully_added' => 'Category Successfully Added',
+	'category_successfully_updated' => 'Category Successfully Updated',
+	'category_successfully_deleted' => 'Category Successfully Deleted',
+	'status_changed_successfully' => 'Status Changed Successfully',
+	'category' => 'Category',
+	'sub_category' => 'Sub-Category',
+	'select' => 'Select',
+	'name' => 'Name',
+	'status' => 'Status',
+	'action' => 'Action',
+	'add_record' => 'Add Record',
+	'edit_record' => 'Edit Record',
+	'enter' => 'Enter',
+	'update' => 'Update',
+	'save' => 'Save',
+	'new' => 'New',
+	'add' => 'Add',
+	'edit' => 'Edit',
+	'delete' => 'Delete',
+	'dashboard' => 'Dashboard',
+];

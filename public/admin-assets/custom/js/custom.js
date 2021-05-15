@@ -69,6 +69,13 @@ $(document).on('click','.edit_category',function(){
     $('#id').val(item.id);
     $('#edit-modal').modal('show');
 });
+$(document).on('click','.edit_sub_category',function(){
+    let item =$.parseJSON($(this).attr('data-item'));
+    $('#edit_name').val(item.name);
+    $('#cat_id').val(item.cat_id);
+    $('#id').val(item.id);
+    $('#edit-modal').modal('show');
+});
 $(document).on('click','.delete_element',function(){
     let url = $(this).attr('data-url');
     let _token = $('input[name="_token"]').val();
@@ -87,5 +94,56 @@ $(document).on('change','.changeStatus',function(){
     let value = $('input[id="status_'+id+'"]:checked').val();
     if(value!=1)
         value=0;
-        $.post(url,{id:id,_token:_token,status:value},function(resp){});
+        $.post(url,{id:id,_token:_token,status:value},function(resp){
+			var resp=$.parseJSON(resp);
+			if(resp.status=='true')
+            {
+                $.toaster({ priority :'success', title :'Status', message : resp.message });
+            } else {
+				$.toaster({ priority :'danger', title :'Error', message : resp.message });
+			}
+		});
+});
+$(document).on('submit','.setting_form',function(){
+    var url=$(this).attr('action');
+    var data=new FormData($(this)[0]);
+    $.ajax({
+        type:'POST',
+        url:url,
+        data:data,
+        contentType:false,
+        processData:false,
+        success:function(fb)
+        {
+            console.log(fb);
+            var resp=$.parseJSON(fb);
+            if(resp.status=='true')
+            {
+              $.toaster({ priority :'success', title :'Status', message : resp.message });
+            }
+            else
+            {
+               //alert(resp.message)
+               $.toaster({ priority :'danger', title :'Status', message : resp.message });
+            }
+        }
+
+
+    });
+    return false;
+});
+$(document).on('change','.getRecordById',function(){
+	//show_loader();
+    let id = $(this).val();
+	let target = $(this).attr('data-target');
+	$(target).html('');
+	if(id){
+		let url = $(this).attr('data-url') + id;
+		let _token = $('input[name="_token"]').val();
+		$(target).html('');
+		$.post(url,{id:id,_token:_token},function(resp){
+			$(target).html(resp);
+		//	hide_loader();
+		});
+	}
 });

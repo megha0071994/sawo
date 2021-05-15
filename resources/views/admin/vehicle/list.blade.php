@@ -5,30 +5,40 @@
 		<div class="card-header">
 			<h3 class="card-title">{{$page_title2}}</h3>
 			<div class="card-tools">
-              <button type="button" class="btn btn-tool btn-primary" data-toggle="modal" data-target="#add-modal">
-                <i class="fas fa-plus"></i>&nbsp;&nbsp;{{trans('add_record')}}
-              </button>
+              <a href="{{ url('admin/vehicle/add') }}" class="btn btn-tool btn-primary" >
+                <i class="fas fa-plus"></i>&nbsp;&nbsp;{{ __('lang.addvehicle')}}
+              </a>
             </div>
 		</div>
 		<div class="card-body">
-			<table class="table table-stripped dattable" data-url="{{ url('admin/products/getCategory') }}" data-json="{{ url('admin/getJSON/category') }}">
+			<table class="table table-stripped dattable" data-url="{{ url('admin/vehicle/getvehicle') }}" data-json="{{ url('admin/getJSON/vehicle') }}">
 				<thead>
 					<tr>
 						<th>#</th>
-						<th>{{trans('name')}}</th>
-						<th>{{trans('status')}}</th>
-						<th>{{trans('action')}}</th>
+						<th>Driver</th>
+						<th>Category</th>
+						<th>Sub Category</th>
+            <th>Vehicle Number</th>
+            <th>Vehicle Name</th>
+            <th>Verification</th>
+            <th>Status</th>
+            <th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
 					
 				</tbody>
 				<tfoot>
-					<tr>
+          <tr>
 						<th>#</th>
-						<th>{{trans('name')}}</th>
-						<th>{{trans('status')}}</th>
-						<th>{{trans('action')}}</th>
+						<th>Driver</th>
+						<th>Category</th>
+						<th>Sub Category</th>
+            <th>Vehicle Number</th>
+            <th>Vehicle Name</th>
+            <th>Verification</th>
+            <th>Status</th>
+            <th>Action</th>
 					</tr>
 				</tfoot>
 			</table>

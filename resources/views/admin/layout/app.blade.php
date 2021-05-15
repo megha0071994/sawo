@@ -151,6 +151,29 @@
                         </li>
                      </ul>
                   </li>
+                  <li class="nav-item">
+                     <a href="{{ url('admin/vehicle') }}" class="nav-link">
+                        <i class="fa fa-truck nav-icon"></i>
+                        <p>{{ __('lang.manageVehicle') }} </p>
+                     </a>
+                  </li>
+                  <li class="nav-item">
+                     <a href="{{ url('admin/support') }}" class="nav-link">
+                        <i class="fa fa-headphones nav-icon"></i>
+                        <p>{{ __('lang.ContactRequest') }} </p>
+                     </a>
+                  </li>
+                  <li class="nav-item">
+                     <a href="{{ url('admin/setting') }}" class="nav-link">
+                        <i class="fa fa-cogs nav-icon"></i>
+                        <p>{{ __('lang.settings') }} </p>
+                     </a>
+                  </li>
+
+
+
+
+
 				  <li class="nav-item">
                      <a href="" class="nav-link">
                         <i class="fas fa-sign-out-alt nav-icon"></i>
