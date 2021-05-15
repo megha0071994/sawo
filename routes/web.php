@@ -20,6 +20,7 @@ if ( file_exists( app_path( 'Http/Controllers/LocalizationController.php') ) )
 Route::group(['middleware' => 'language'], function() {
 	Route::prefix('admin')->group(function(){
 		Route::get('/', ['App\Http\Controllers\AdminAuth'::class, 'index']);
+		Route::get('/logout', ['App\Http\Controllers\AdminAuth'::class, 'logout']);
 		Route::post('/login', ['App\Http\Controllers\AdminAuth'::class, 'login']);
 		Route::group(['middleware' => 'my_auth'], function() {
 			
@@ -49,6 +50,22 @@ Route::group(['middleware' => 'language'], function() {
 			Route::post('/driver/{type}', ['App\Http\Controllers\DriverController'::class, 'curd']);
 			
 			Route::post('/get-sub-category-by-category/{id}', ['App\Http\Controllers\ProductController'::class, 'get_sub_cat_by_cat_id']);
+			
+			Route::get('/support', ['App\Http\Controllers\Admin'::class, 'support']);
+			Route::prefix('vehicle')->group(function(){ 
+				Route::get('/', ['App\Http\Controllers\VehicleController'::class, 'index']);
+				Route::match(['get','post'],'/add', ['App\Http\Controllers\VehicleController'::class, 'add']);
+				Route::match(['get','post'],'/edit/{id}', ['App\Http\Controllers\VehicleController'::class, 'edit']);
+				Route::post('/subcat/{id}', ['App\Http\Controllers\VehicleController'::class, 'subcat']);
+				Route::post('/manageStatus/{id}', ['App\Http\Controllers\VehicleController'::class, 'manageStatus']);
+				Route::match(['get','post'],'/getvehicle', ['App\Http\Controllers\VehicleController'::class, 'getvehicle']);
+			});
+			Route::prefix('setting')->group(function(){ 
+				Route::get('/',function(){
+					return view('admin.setting.general_setting',['page_title'=>__('lang.settings'),'page_title2'=>__('lang.settings')]);
+				});
+				Route::post('save_text_setting',['App\Http\Controllers\SettingController'::class, 'save_text_setting']);
+			});
 			
 		});
 	});

@@ -6,7 +6,7 @@
 			<h3 class="card-title">{{$page_title2}}</h3>
 			<div class="card-tools">
               <button type="button" class="btn btn-tool btn-primary" data-toggle="modal" data-target="#add-modal">
-                <i class="fas fa-plus"></i>&nbsp;&nbsp;{{__('lang.add_record')}}
+                <i class="fas fa-plus"></i>&nbsp;&nbsp;{{ __('lang.add_record') }} 
               </button>
             </div>
 		</div>

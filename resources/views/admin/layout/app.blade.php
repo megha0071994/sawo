@@ -49,7 +49,7 @@
          <!-- Right navbar links -->
          <ul class="navbar-nav ml-auto">
             <!-- Notifications Dropdown Menu -->
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown d-none">
                <a class="nav-link" data-toggle="dropdown" href="javascript:;">
                <i class="far fa-bell"></i>
                <span class="badge badge-dark navbar-badge">15</span>
@@ -76,7 +76,7 @@
                </a>
             </li>
             <li class="nav-item">
-               <a class="nav-link" href="javascript:;">
+               <a class="nav-link" onclick="return confirm('{{__('lang.Are_you_sure_want_to_logout')}}');" href="{{ url('admin/logout') }}">
                <i class="fas fa-sign-out-alt"></i>
                </a>
             </li>
@@ -84,6 +84,9 @@
       </nav>
       <!-- /.navbar -->
       <!-- Main Sidebar Container -->
+	  @php
+	  $admin_info = session('admin_session')[0];
+	  @endphp
       <aside class="main-sidebar sidebar-dark-primary elevation-4">
          <!-- Brand Logo -->
          <a href="javascript:;" class="brand-link">
@@ -99,7 +102,7 @@
                   <img src="{{ url('public/admin-assets/dist/img/logo.png') }}" class="img-circle elevation-2 d-none" alt="admin name">
                </div>
                <div class="info">
-                  <a href="javascript:;" class="d-block">Admin Name</a>
+                  <a href="javascript:;" class="d-block">{{$admin_info['name']}}</a>
                </div>
             </div>
             <!-- SidebarSearch Form -->
@@ -117,50 +120,68 @@
             <nav class="mt-2">
                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 				  <li class="nav-item">
-                     <a href="" class="nav-link active">
+                     <a href="{{url('admin/dashboard')}}" class="nav-link @if(Request::url() == url('admin/dashboard')) active @endif">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p> Dashboard </p>
+                        <p> {{__('lang.dashboard')}} </p>
                      </a>
                   </li>
-                  <li class="nav-item">
-                     <a href="{{ url('admin/category') }}" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p> Manage Category </p>
-                     </a>
-                  </li>
-                  <li class="nav-item">
-                     <a href="{{ url('admin/sub-category') }}" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p> Manage Sub-Category </p>
-                     </a>
-                  </li>
-                  <li class="nav-item">
-                     <a href="{{ url('admin/vehicle-type') }}" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p> Manage Vehicle Type</p>
-                     </a>
-                  </li>
-                  <li class="nav-item active d-none">
-                     <a href="javascript:;" class="nav-link active">
+                  <li class="nav-item active @if(in_array(Request::url(),array(url('admin/category'),url('admin/sub-category'),url('admin/vehicle-type')))) menu-open @endif">
+                     <a href="javascript:;" class="nav-link @if(in_array(Request::url(),array(url('admin/category'),url('admin/sub-category'),url('admin/vehicle-type')))) active @endif">
 						<i class="nav-icon fas fa-th-large"></i>
                         <p>
-                           category
+                           {{__('lang.manage_master')}}
                            <i class="right fas fa-angle-left"></i>
                         </p>
                      </a>
                      <ul class="nav nav-treeview">
                         <li class="nav-item">
-                           <a href="" class="nav-link acitve">
+                           <a href="{{ url('admin/category') }}" class="nav-link @if(Request::url() == url('admin/category')) active @endif">
                               <i class="far fa-circle nav-icon"></i>
-                              <p>category</p>
+                              <p>{{__('lang.category')}}</p>
+                           </a>
+                        </li>
+                        <li class="nav-item">
+                           <a href="{{ url('admin/sub-category') }}" class="nav-link @if(Request::url() == url('admin/sub-category')) active @endif">
+                              <i class="far fa-circle nav-icon"></i>
+                              <p>{{__('lang.sub_category')}}</p>
+                           </a>
+                        </li>
+                        <li class="nav-item">
+                           <a href="{{ url('admin/vehicle-type') }}" class="nav-link @if(Request::url() == url('admin/vehicle-type')) active @endif">
+                              <i class="far fa-circle nav-icon"></i>
+                              <p>{{__('lang.vehicle_type')}}</p>
                            </a>
                         </li>
                      </ul>
                   </li>
+                  <li class="nav-item">
+                     <a href="{{ url('admin/vehicle') }}" class="nav-link @if(Request::url() == url('admin/vehicle')) active @endif">
+                        <i class="fa fa-truck nav-icon"></i>
+                        <p>{{ __('lang.manageVehicle') }} </p>
+                     </a>
+                  </li>
+                  <li class="nav-item">
+                     <a href="{{ url('admin/driver') }}" class="nav-link @if(Request::url() == url('admin/driver')) active @endif">
+                        <i class="fa fa-user nav-icon"></i>
+                        <p>{{ __('lang.manageDriver') }} </p>
+                     </a>
+                  </li>
+                  <li class="nav-item">
+                     <a href="{{ url('admin/support') }}" class="nav-link @if(Request::url() == url('admin/support')) active @endif">
+                        <i class="fa fa-headphones nav-icon"></i>
+                        <p>{{ __('lang.ContactRequest') }} </p>
+                     </a>
+                  </li>
+                  <li class="nav-item">
+                     <a href="{{ url('admin/setting') }}" class="nav-link @if(Request::url() == url('admin/setting')) active @endif">
+                        <i class="fa fa-cogs nav-icon"></i>
+                        <p>{{ __('lang.settings') }} </p>
+                     </a>
+                  </li>
 				  <li class="nav-item">
-                     <a href="" class="nav-link">
+                     <a onclick="return confirm('{{__('lang.Are_you_sure_want_to_logout')}}');" href="{{ url('admin/logout') }}" class="nav-link">
                         <i class="fas fa-sign-out-alt nav-icon"></i>
-                        <p> Logout </p>
+                        <p>{{ __('lang.logout') }} </p>
                      </a>
                   </li>
                </ul>
@@ -181,7 +202,7 @@
                <!-- /.col -->
                <div class="col-sm-6">
                   <ol class="breadcrumb float-sm-right">
-                     <li class="breadcrumb-item"><a href="{{ url('/') }}/public/">Home</a></li>
+                     <li class="breadcrumb-item"><a href="{{ url('/') }}/public/">{{ __('lang.home') }}</a></li>
                      <li class="breadcrumb-item active">{{ $page_title }}</li>
                   </ol>
                </div>
