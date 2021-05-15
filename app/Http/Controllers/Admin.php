@@ -43,6 +43,27 @@ class Admin extends Controller
                 array('data'=>'action','name'=>'action'),
             );
         }
+		if($type=='vehicle-type') {
+            $arr=array(
+                array('data'=>'id','name'=>'id'),
+                array('data'=>'name','name'=>'name'),
+                array('data'=>'cat_id','name'=>'cat_id'),
+                array('data'=>'sub_cat_id','name'=>'sub_cat_id'),
+                array('data'=>'status','name'=>'status'),
+                array('data'=>'action','name'=>'action'),
+            );
+        }
+		if($type=='driver') {
+            $arr=array(
+                array('data'=>'id','name'=>'id'),
+                array('data'=>'profile_pic','name'=>'profile_pic'),
+                array('data'=>'name','name'=>'name'),
+                array('data'=>'mobile_no','name'=>'mobile_no'),
+                array('data'=>'address','name'=>'address'),
+                array('data'=>'status','name'=>'status'),
+                array('data'=>'action','name'=>'action'),
+            );
+        }
 		echo json_encode($arr);
 	}
 	

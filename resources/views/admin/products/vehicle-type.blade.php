@@ -11,12 +11,13 @@
             </div>
 		</div>
 		<div class="card-body">
-			<table class="table table-stripped dattable" data-url="{{ url('admin/getSubCategory') }}" data-json="{{ url('admin/getJSON/sub-category') }}">
+			<table class="table table-stripped dattable" data-url="{{ url('admin/getVehicleType') }}" data-json="{{ url('admin/getJSON/vehicle-type') }}">
 				<thead>
 					<tr>
 						<th>#</th>
-						<th>{{__('lang.category')}}</th>
 						<th>{{__('lang.name')}}</th>
+						<th>{{__('lang.category')}}</th>
+						<th>{{__('lang.sub_category')}}</th>
 						<th>{{__('lang.status')}}</th>
 						<th>{{__('lang.action')}}</th>
 					</tr>
@@ -27,8 +28,9 @@
 				<tfoot>
 					<tr>
 						<th>#</th>
-						<th>{{__('lang.category')}}</th>
 						<th>{{__('lang.name')}}</th>
+						<th>{{__('lang.category')}}</th>
+						<th>{{__('lang.sub_category')}}</th>
 						<th>{{__('lang.status')}}</th>
 						<th>{{__('lang.action')}}</th>
 					</tr>
@@ -41,25 +43,31 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">{{__('lang.add')." ".__('lang.new')." ".__('lang.sub_category')}}</h4>
+              <h4 class="modal-title">{{__('lang.add')." ".__('lang.new')." ".__('lang.vehicle_type')}}</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">×</span>
               </button>
             </div>
             <div class="modal-body">
-              <form data-model="#add-modal" action="{{ url('admin/sub-category/insert') }}" class="database_operations">
+              <form data-model="#add-modal" action="{{ url('admin/vehicle-type/insert') }}" class="database_operations">
 				<div class="form-group">
 					{{csrf_field()}}
-                    <label for="">{{__('lang.enter')." ".__('lang.sub_category')}}</label>
-                    <input type="text" name="name" class="form-control" required placeholder="{{__('lang.enter')." ".__('lang.sub_category')}}">
+                    <label for="">{{__('lang.enter')." ".__('lang.vehicle_type')}}</label>
+                    <input type="text" name="name" class="form-control" required placeholder="{{__('lang.enter')." ".__('lang.vehicle_type')}}">
                 </div>
 				<div class="form-group">
                     <label for="">{{__('lang.select')." ".__('lang.category')}}</label>
-                    <select name="cat_id" class="form-control" required>
+                    <select name="cat_id" class="form-control getRecordById" data-target="#sub_cat_id" data-url="get-sub-category-by-category/" required>
 						<option value="">{{__('lang.select')." ".__('lang.category')}}</option>
 						@foreach($categories as $category)
 						<option value="{{$category['id']}}">{{$category['name']}}</option>
 						@endforeach
+					</select>
+                </div>
+				<div class="form-group">
+                    <label for="">{{__('lang.select')." ".__('lang.sub_category')}}</label>
+                    <select name="sub_cat_id" id="sub_cat_id" class="form-control" required>
+						<option value="">{{__('lang.select')." ".__('lang.sub_category')}}</option>
 					</select>
                 </div>
 				<div class="form-group text-right">
@@ -77,26 +85,32 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">{{__('lang.edit')." ".__('lang.sub_category')}}</h4>
+              <h4 class="modal-title">{{__('lang.edit')." ".__('lang.vehicle_type')}}</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">×</span>
               </button>
             </div>
             <div class="modal-body">
-              <form data-model="#edit-modal" action="{{ url('admin/sub-category/edit') }}" class="database_operations">
+              <form data-model="#edit-modal" action="{{ url('admin/vehicle-type/edit') }}" class="database_operations">
 				<div class="form-group">
 					{{csrf_field()}}
-                    <label for="exampleInputEmail1">{{__('lang.enter')." ".__('lang.sub_category')}}</label>
+                    <label for="">{{__('lang.enter')." ".__('lang.vehicle_type')}}</label>
 					<input type="hidden" name="id" id="id">
-                    <input type="text" name="name" id="edit_name" class="form-control" required placeholder="{{__('lang.enter')." ".__('lang.sub_category')}}">
+                    <input type="text" name="name" id="edit_name" class="form-control" required placeholder="{{__('lang.enter')." ".__('lang.vehicle_type')}}">
                 </div>
 				<div class="form-group">
                     <label for="">{{__('lang.select')." ".__('lang.category')}}</label>
-                    <select name="cat_id" id="cat_id" class="form-control" required>
+                    <select name="cat_id" id="cat_id" class="form-control getRecordById" data-target="#sub_cat_id1" data-url="get-sub-category-by-category/" required>
 						<option value="">{{__('lang.select')." ".__('lang.category')}}</option>
 						@foreach($categories as $category)
 						<option value="{{$category['id']}}">{{$category['name']}}</option>
 						@endforeach
+					</select>
+                </div>
+				<div class="form-group">
+                    <label for="">{{__('lang.select')." ".__('lang.sub_category')}}</label>
+                    <select name="sub_cat_id" id="sub_cat_id1" class="form-control" required>
+						<option value="">{{__('lang.select')." ".__('lang.sub_category')}}</option>
 					</select>
                 </div>
 				<div class="form-group text-right">

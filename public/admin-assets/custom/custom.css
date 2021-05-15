@@ -28,3 +28,8 @@
 	right:0;
 	top:14px;
 }
+
+.wait-loader{
+	pointer-events: none;
+    opacity: 0.6;
+}

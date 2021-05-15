@@ -1,3 +1,13 @@
+function show_loader()
+{
+	$('body').addClass("wait-loader");
+}
+
+function hide_loader()
+{
+	$('body').removeClass("wait-loader");
+}
+
 let tableReload = '';
 $(document).ready(function(){
     $('.basic-datatable').DataTable();
@@ -19,6 +29,7 @@ $(document).ready(function(){
     }
   });
 $(document).on('submit','.database_operations',function(){
+	show_loader();
 	var url=$(this).attr('action');
     var data = new FormData(this);
     var _this=this;
@@ -33,6 +44,7 @@ $(document).on('submit','.database_operations',function(){
         processData: false,
         success:function(fb){
             var resp=$.parseJSON(fb);
+			hide_loader();
             if(resp.status=='true')
             {
                 $(_this).trigger('reset');
@@ -68,6 +80,7 @@ $(document).on('click','.edit_category',function(){
     $('#edit_name').val(item.name);
     $('#id').val(item.id);
     $('#edit-modal').modal('show');
+	hide_loader();
 });
 $(document).on('click','.edit_sub_category',function(){
     let item =$.parseJSON($(this).attr('data-item'));
@@ -75,19 +88,34 @@ $(document).on('click','.edit_sub_category',function(){
     $('#cat_id').val(item.cat_id);
     $('#id').val(item.id);
     $('#edit-modal').modal('show');
+	hide_loader();
+});
+$(document).on('click','.edit_vehicle_type',function(){
+    let item =$.parseJSON($(this).attr('data-item'));
+    $('#edit_name').val(item.name);
+    $('#cat_id').val(item.cat_id);
+	$('#cat_id').trigger("change");
+    setTimeout(function(){
+		$('#sub_cat_id1').val(item.sub_cat_id);
+		$('#id').val(item.id);
+		$('#edit-modal').modal('show');
+	},1000);
 });
 $(document).on('click','.delete_element',function(){
+	show_loader()
     let url = $(this).attr('data-url');
     let _token = $('input[name="_token"]').val();
     let id = $(this).attr('data-id');
     if(window.confirm('Do you want to delete this?')) {
         $.post(url,{id:id,_token:_token},function(resp){
             tableReload.ajax.reload();
+			hide_loader();
             $.toaster({ priority :'success', title :'Status', message : 'Successfully Deleted' });
         });
     }
 });
 $(document).on('change','.changeStatus',function(){
+	show_loader();
     let id = $(this).attr('data-id');
     let url = $(this).attr('data-url');
     let _token = $('input[name="_token"]').val();
@@ -96,6 +124,7 @@ $(document).on('change','.changeStatus',function(){
         value=0;
         $.post(url,{id:id,_token:_token,status:value},function(resp){
 			var resp=$.parseJSON(resp);
+			hide_loader();
 			if(resp.status=='true')
             {
                 $.toaster({ priority :'success', title :'Status', message : resp.message });
@@ -103,4 +132,19 @@ $(document).on('change','.changeStatus',function(){
 				$.toaster({ priority :'danger', title :'Error', message : resp.message });
 			}
 		});
+});
+$(document).on('change','.getRecordById',function(){
+	show_loader();
+    let id = $(this).val();
+	let target = $(this).attr('data-target');
+	$(target).html('');
+	if(id){
+		let url = $(this).attr('data-url') + id;
+		let _token = $('input[name="_token"]').val();
+		$(target).html('');
+		$.post(url,{id:id,_token:_token},function(resp){
+			$(target).html(resp);
+			hide_loader();
+		});
+	}
 });

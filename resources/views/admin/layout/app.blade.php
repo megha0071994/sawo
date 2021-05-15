@@ -123,18 +123,24 @@
                      </a>
                   </li>
                   <li class="nav-item">
-                     <a href="" class="nav-link active">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p> Dashboard </p>
-                     </a>
-                  </li>
-                  <li class="nav-item">
-                     <a href="{{ url('admin/products/category') }}" class="nav-link">
+                     <a href="{{ url('admin/category') }}" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p> Manage Category </p>
                      </a>
                   </li>
-                  <li class="nav-item active">
+                  <li class="nav-item">
+                     <a href="{{ url('admin/sub-category') }}" class="nav-link">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p> Manage Sub-Category </p>
+                     </a>
+                  </li>
+                  <li class="nav-item">
+                     <a href="{{ url('admin/vehicle-type') }}" class="nav-link">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p> Manage Vehicle Type</p>
+                     </a>
+                  </li>
+                  <li class="nav-item active d-none">
                      <a href="javascript:;" class="nav-link active">
 						<i class="nav-icon fas fa-th-large"></i>
                         <p>

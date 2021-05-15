@@ -27,19 +27,28 @@ Route::group(['middleware' => 'language'], function() {
 			
 			Route::get('/dashboard', ['App\Http\Controllers\Admin'::class, 'dashboard']);
 			
-			Route::get('/category', ['App\Http\Controllers\Admin'::class, 'category']);
-			Route::prefix('products')->group(function(){ 
-				Route::get('/category', ['App\Http\Controllers\ProductController'::class, 'category']);
-				Route::match(['get','post'],'/getCategory', ['App\Http\Controllers\ProductController'::class, 'getCategory']);
-				Route::post('/category/{type}', ['App\Http\Controllers\ProductController'::class, 'category']);
-			});
+			// Route::get('/category', ['App\Http\Controllers\Admin'::class, 'category']); // for example
+			 
+			Route::get('/category', ['App\Http\Controllers\ProductController'::class, 'category']);
+			Route::match(['get','post'],'/getCategory', ['App\Http\Controllers\ProductController'::class, 'getCategory']);
+			Route::post('/category/{type}', ['App\Http\Controllers\ProductController'::class, 'category']);
+		
+			Route::get('/sub-category', ['App\Http\Controllers\ProductController'::class, 'sub_category']);
+			Route::match(['get','post'],'/getSubCategory', ['App\Http\Controllers\ProductController'::class, 'getSubCategory']);
+			Route::post('/sub-category/{type}', ['App\Http\Controllers\ProductController'::class, 'sub_category']);
 			
-			Route::get('/sub-category', ['App\Http\Controllers\Admin'::class, 'sub_category']);
-			Route::prefix('products')->group(function(){ 
-				Route::get('/sub-category', ['App\Http\Controllers\ProductController'::class, 'sub_category']);
-				Route::match(['get','post'],'/getSubCategory', ['App\Http\Controllers\ProductController'::class, 'getSubCategory']);
-				Route::post('/sub-category/{type}', ['App\Http\Controllers\ProductController'::class, 'sub_category']);
-			});
+			Route::get('/vehicle-type', ['App\Http\Controllers\ProductController'::class, 'vehicle_type']);
+			Route::match(['get','post'],'/getVehicleType', ['App\Http\Controllers\ProductController'::class, 'getVehicleType']);
+			Route::post('/vehicle-type/{type}', ['App\Http\Controllers\ProductController'::class, 'vehicle_type']);
+			
+			Route::get('/driver', ['App\Http\Controllers\DriverController'::class, 'index']);
+			Route::get('/driver/add', ['App\Http\Controllers\DriverController'::class, 'add']);
+			Route::get('/driver/edit/{driver_id}', ['App\Http\Controllers\DriverController'::class, 'edit']);
+			Route::get('/driver/edit', ['App\Http\Controllers\DriverController'::class, 'edit']);
+			Route::match(['get','post'],'/getDriver', ['App\Http\Controllers\DriverController'::class, 'getDriver']);
+			Route::post('/driver/{type}', ['App\Http\Controllers\DriverController'::class, 'curd']);
+			
+			Route::post('/get-sub-category-by-category/{id}', ['App\Http\Controllers\ProductController'::class, 'get_sub_cat_by_cat_id']);
 			
 		});
 	});
