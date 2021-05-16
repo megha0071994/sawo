@@ -104,19 +104,13 @@
                 <div class="col-sm-4">
                     <div class="form-group">
                         <label>{{  __('lang.RCDoc') }}</label>
-						<div>
-							<input accept="image/png, image/gif, image/jpeg" name="rc_doc"  type="file">
-						</div>
+                        <input accept="image/png, image/gif, image/jpeg" name="rc_doc"  type="file" class="form-control">
                     </div>
                 </div>
-			</div>
-			<div class="row">
                 <div class="col-sm-4">
                     <div class="form-group">
                         <label>{{  __('lang.InsuranceDoc') }}</label>
-						<div>
-							<input type="file" accept="image/png, image/gif, image/jpeg"  name="ins_doc">
-						</div>
+                        <input  type="file" accept="image/png, image/gif, image/jpeg"  name="ins_doc" class="form-control">
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -124,21 +118,36 @@
                         <label>{{  __('lang.InsuranceValidfrom') }}</label>
                         <input type="date" value="{{ $v->insurance_valid_from }}" required name="ins_valid_from"  class="form-control">
                     </div>
+                </div> 
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <img src="{{ url('public/uploads/documents/'.$v->rc_doc) }}" width="200px" />
+                     </div>
                 </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <img src="{{ url('public/uploads/documents/'.$v->insurance_doc) }}" width="200px" />
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                       
+                    </div>
+                </div> 
+            </div>
+            <div class="row">
                 <div class="col-sm-4">
                     <div class="form-group">
                         <label>{{  __('lang.InsuranceValidto') }}</label>
                         <input  type="date" value="{{ $v->insurance_valid_to }}" required name="ins_valid_to" class="form-control">
                     </div>
                 </div>
-            </div>
-            <div class="row">
                 <div class="col-sm-4">
                     <div class="form-group">
                         <label>{{  __('lang.PermitDoc') }}</label>
-						<div>
-							<input type="file" accept="image/png, image/gif, image/jpeg" name="pdoc">
-						</div>
+                        <input type="file" accept="image/png, image/gif, image/jpeg"   name="pdoc" class="form-control">
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -147,21 +156,35 @@
                         <input  type="date" value="{{ $v->PermitValidfrom }}" required name="pvalid_from" class="form-control">
                     </div>
                 </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                       </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <img src="{{ url('public/uploads/documents/'.$v->permit_doc) }}" width="200px" />
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                       
+                    </div>
+                </div> 
+            </div>
+
+            <div class="row">
                 <div class="col-sm-4">
                     <div class="form-group">
                         <label>{{  __('lang.PermitValidto') }}</label>
                         <input name="pvalidto" value="{{ $v->PermitValidto }}" required  type="date" class="form-control">
                     </div>
                 </div>
-            </div>
-
-            <div class="row">
                 <div class="col-sm-4">
                     <div class="form-group">
                         <label>{{  __('lang.TaxDoc') }}</label>
-						<div>
-							<input type="file" accept="image/png, image/gif, image/jpeg" name="tax_doc">
-						</div>
+                        <input type="file" accept="image/png, image/gif, image/jpeg"   name="tax_doc" class="form-control">
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -170,22 +193,35 @@
                         <input name="tax_valid_from" value="{{ $v->tax_from }}" required type="date" class="form-control">
                     </div>
                 </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                       </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <img src="{{ url('public/uploads/documents/'.$v->tax_doc) }}" width="200px" />
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                       
+                    </div>
+                </div> 
+            </div>
+
+            <div class="row">
                 <div class="col-sm-4">
                     <div class="form-group">
                         <label>{{  __('lang.TaxValidto') }} </label>
                         <input  name="tax_valid_to" value="{{ $v->tax_to }}" required type="date" class="form-control">
                     </div>
                 </div>
-            </div>
-
-
-            <div class="row">
                 <div class="col-sm-4">
                     <div class="form-group">
                         <label>{{  __('lang.PUCDoc') }}</label>
-						<div>
-							<input type="file" accept="image/png, image/gif, image/jpeg" name="pub_doc">
-						</div>
+                        <input type="file" accept="image/png, image/gif, image/jpeg"   name="pub_doc" class="form-control">
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -194,21 +230,35 @@
                         <input  name="pub_valid_from" value="{{ $v->puc_from }}" required type="date" class="form-control">
                     </div>
                 </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                       </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <img src="{{ url('public/uploads/documents/'.$v->puc_doc) }}" width="200px" />
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                       
+                    </div>
+                </div> 
+            </div>
+
+            <div class="row">
                 <div class="col-sm-4">
                     <div class="form-group">
                         <label>{{  __('lang.PUCValidto') }} </label>
                         <input name="pub_valid_to" value="{{ $v->puc_to }}" required  type="date" class="form-control">
                     </div>
                 </div>
-            </div>
-
-            <div class="row">
                 <div class="col-sm-4">
                     <div class="form-group">
                         <label>{{  __('lang.PoliceverificationDoc') }}</label>
-						<div>
-							<input type="file" accept="image/png, image/gif, image/jpeg" name="pvdoc">
-						</div>
+                        <input type="file" accept="image/png, image/gif, image/jpeg"  name="pvdoc" class="form-control">
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -217,16 +267,32 @@
                         <input  type="date" value="{{ $v->permit_valid_from }}" required name="pv_valid_from" class="form-control">
                     </div>
                 </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                       </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <img src="{{ url('public/uploads/documents/'.$v->PoliceverificationDoc) }}" width="200px" />
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                       
+                    </div>
+                </div> 
+            </div>
+
+
+            <div class="row">
                 <div class="col-sm-4">
                     <div class="form-group">
                         <label>{{  __('lang.PoliceverificationValidto') }} </label>
                         <input value="{{ $v->permit_valid_to }}" required  type="date" name="pvvalidto" class="form-control">
                     </div>
                 </div>
-            </div>
-
-
-            <div class="row">
                 <div class="col-sm-4">
                     <div class="form-group">
                         <label>{{  __('lang.Verification') }}</label>
