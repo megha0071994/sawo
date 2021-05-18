@@ -101,4 +101,6 @@ return [
 	"Are_you_sure_want_to_logout"=>"Are you sure want to logout?",
 	"logout"=>"Logout",
 	"home"=>"Home",
+	'compliencepages'=>'Complience Pages',
+	'generalsetting'=>'General Setting '
 ];

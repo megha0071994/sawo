@@ -173,10 +173,27 @@
                      </a>
                   </li>
                   <li class="nav-item">
-                     <a href="{{ url('admin/setting') }}" class="nav-link @if(Request::url() == url('admin/setting')) active @endif">
-                        <i class="fa fa-cogs nav-icon"></i>
-                        <p>{{ __('lang.settings') }} </p>
+                     <a href="javascript:;" class="nav-link">
+						<i class="nav-icon fa fa-cogs nav-icon"></i>
+                        <p>
+                           {{__('lang.settings')}}
+                           <i class="right fas fa-angle-left"></i>
+                        </p>
                      </a>
+                     <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                           <a href="{{ url('admin/setting') }}" class="nav-link @if(Request::url() == url('admin/setting')) active @endif">
+                              <i class="far fa-circle nav-icon"></i>
+                              <p>{{__('lang.generalsetting')}}</p>
+                           </a>
+                        </li>
+                        <li class="nav-item">
+                           <a href="{{ url('admin/setting/compliencepages') }}" class="nav-link @if(Request::url() == url('setting/compliencepages')) active @endif">
+                              <i class="far fa-circle nav-icon"></i>
+                              <p>{{__('lang.compliencepages')}}</p>
+                           </a>
+                        </li>
+                     </ul>
                   </li>
 				  <li class="nav-item">
                      <a onclick="return confirm('{{__('lang.Are_you_sure_want_to_logout')}}');" href="{{ url('admin/logout') }}" class="nav-link">
@@ -262,8 +279,23 @@
 	<script src="{{ url('/') }}/public/admin-assets/plugins/datatables/jquery.dataTables.min.js"></script>
 	
    <script src="{{ url('/public/admin-assets/plugins/toastr/jquery.toaster.js') }}"></script>
+   <script src="{{ url('') }}/public/admin-assets/plugins/ckeditor/ckeditor.js"></script>
    <script src="{{ url('/public/admin-assets/plugins/toastr/toastr.min.js') }}"></script>
    <script src="{{ url('/public/admin-assets/custom/js/custom.js') }}"></script>
+   <script>
+   if($('textarea').hasClass('about_desc'))
+   {
+      CKEDITOR.replace('about_desc');
+   }
+   if($('textarea').hasClass('privacy_policy_desc'))
+   {
+      CKEDITOR.replace('privacy_policy_desc');
+   }
+   if($('textarea').hasClass('termconditions_desc'))
+   {
+      CKEDITOR.replace('termconditions_desc');
+   }
+   </script>
    <?php
 	// if($this->session->flashdata('success')):
 	?>

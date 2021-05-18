@@ -148,3 +148,31 @@ $(document).on('change', '.getRecordById', function() {
         });
     }
 });
+$(document).on('submit','.setting_form',function(){
+    var url=$(this).attr('action');
+    var data=new FormData($(this)[0]);
+    $.ajax({
+        type:'POST',
+        url:url,
+        data:data,
+        contentType:false,
+        processData:false,
+        success:function(fb)
+        {
+            console.log(fb);
+            var resp=$.parseJSON(fb);
+            if(resp.status=='true')
+            {
+              $.toaster({ priority :'success', title :'Status', message : resp.message });
+            }
+            else
+            {
+               //alert(resp.message)
+               $.toaster({ priority :'danger', title :'Status', message : resp.message });
+            }
+        }
+
+
+    });
+    return false;
+});

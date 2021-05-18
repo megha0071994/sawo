@@ -64,6 +64,9 @@ Route::group(['middleware' => 'language'], function() {
 				Route::get('/',function(){
 					return view('admin.setting.general_setting',['page_title'=>__('lang.settings'),'page_title2'=>__('lang.settings')]);
 				});
+				Route::get('/compliencepages',function(){
+					return view('admin.setting.compliencepages',['page_title'=>__('lang.compliencepages'),'page_title2'=>__('lang.compliencepages')]);
+				});
 				Route::post('save_text_setting',['App\Http\Controllers\SettingController'::class, 'save_text_setting']);
 			});
 			
