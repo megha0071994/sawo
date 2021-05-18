@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/', ['App\Http\Controllers\HomeController'::class, 'index']);
+Route::get('/login', ['App\Http\Controllers\HomeController'::class, 'login']);
 if ( file_exists( app_path( 'Http/Controllers/LocalizationController.php') ) ) 
 {
   Route::get('lang/{locale}', 'App\Http\Controllers\LocalizationController@lang');
