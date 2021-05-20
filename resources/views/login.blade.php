@@ -9,19 +9,27 @@
               
                 <div class="hero-form">
                     <h2 class="hero-title my-3">Login Here!</h2>
-                    <form action="">
+                    @if(Request::segment(2)=='')
+                    <form action="{{ url('sendOtp') }}" method="post">
+                    @else 
+                    <form action="{{ url('checkOtp') }}" class="database_operations">
+                    @endif
                         <h4>Please enter your credentials</h4>
-                        <P class="red">please check the number.</P>
+                        {{csrf_field()}}
+                        @if(Request::segment(2)=='')
                         <div class="stack_input">
                             <h6>Mobile No.</h6>
-                            <input class="form-control">
+                            <input class="form-control" name="mobile" required type="number" min="1">
                         </div>
+                        @else 
                         <div class="stack_input">
                             <h6>OTP</h6>
-                            <input class="form-control">
+                            <input type="hidden" name="user" value="{{ decrypt (Request::segment(2)) }}" />
+                            <input class="form-control" required name="otp" min="1" type="number">
                         </div>
+                        @endif
                         <div class="hero-btn">
-                            <a href="more_details.html" class="btn-primary mt-3 d-block">Login</a>
+                            <input type="submit" class="btn-primary mt-3 d-block" value="Send OTP" />
                         </div>
                     </form>
                 </div>

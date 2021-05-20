@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', ['App\Http\Controllers\HomeController'::class, 'index']);
 Route::get('/login', ['App\Http\Controllers\HomeController'::class, 'login']);
+Route::get('/login/{id}', ['App\Http\Controllers\HomeController'::class, 'login']);
+Route::post('/sendOtp', ['App\Http\Controllers\HomeController'::class, 'sendOtp']);
+Route::post('/checkOtp',['App\Http\Controllers\HomeController'::class, 'checkOtp']);
 if ( file_exists( app_path( 'Http/Controllers/LocalizationController.php') ) ) 
 {
   Route::get('lang/{locale}', 'App\Http\Controllers\LocalizationController@lang');

@@ -53,16 +53,14 @@
                     </div>
 
                     <div class="nav-links">
-                        <a class="nav-menu_item" href="#" target="_blank"><img src="{{ url('/') }}/public/front-assets/images/header/Vendore-icon.png"
-                                alt="">Become A Vendore</a>
-                        <a class="nav-menu_item" href="#" target="_blank"><img src="{{ url('/') }}/public/front-assets/images/header/driver-icon.png"
-                                alt="">Register As A Driver</a>
                         <a class="nav-menu_call" href="#" target="_blank"><img src="{{ url('/') }}/public/front-assets/images/header/call-icon.png"
                                 alt="">+91 76 85 00 11 22</a>
+                        @if(!Session::get('userinfo'))
                         <a class="nav-menu" href="{{ url('login') }}" target="_blank"><img src="{{ url('/') }}/public/front-assets/images/header/signup.png" alt="">Sign
                             Up</a>
                         <a class="nav-menu" href="{{ url('login') }}" target="_blank"><img src="{{ url('/') }}/public/front-assets/images/header/login.png"
                                 alt="">Login</a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -130,8 +128,10 @@
     <!-- js links -->
     <script src="{{ url('/') }}/public/front-assets/js/jquery.js"></script>
     <script src="{{ url('/') }}/public/front-assets/js/bootstrap.min.js"></script>
+    <script src="{{ url('/public/admin-assets/plugins/toastr/jquery.toaster.js') }}"></script>
     <script src="{{ url('/') }}/public/front-assets/js/swiper.js"></script>
     <script src="{{ url('/') }}/public/front-assets/js/app.js"></script>
+    <script src="{{ url('/') }}/public/front-assets/js/custom.js"></script>
 </body>
 
 </html>

@@ -3,47 +3,42 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\User;
+use Session;
 class HomeController extends Controller
 {
     public function index(){
         return view('home');
     }
     public function login() {
-        return view('login');
-        $authKey = "f44cc6f735a968bd6937337ffa5804a7";
-        $senderId = "aasawo";
-        $route = "template";
-        $mobileNumber =9691626878;
-        $postData = array(
-            'authkey' => $authKey,
-            'mobiles' => $mobileNumber,
-            'message' => 'Test',//$message,
-            'sender' => $senderId,
-            'route' => $route
-        );
-		//print_r($postData);
-		//die;
-        $url = "http://sms.bulksmsserviceproviders.com/api/send_http.php";
-        // reciver account to get a message
-        $ch = curl_init();
-        curl_setopt_array($ch, array(
-            CURLOPT_URL => $url,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_POST => true,
-            CURLOPT_POSTFIELDS =>$postData
-
-        ));
-
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-
-        $output = curl_exec($ch);
-
-        if (curl_errno($ch)) {
-            return curl_error($ch);
+        if(Session::get('userinfo')) {
+            return redirect('/');
+        } else {
+            return view('login');   
         }
-        echo "A";
-        print_r(curl_close($ch));
+            
+    }
+    public function sendOtp(Request $request){
+        $user = User::where('mobile',$request->mobile)->get()->first();
+        if($user) {
+            $user->otp = rand(1000,9999);
+            $user->update();
+        } else {
+            $user = new User();
+            $user->otp = rand(1000,9999);
+            $user->mobile = $request->mobile;
+            $user->save();
+        }
+        $user = User::where('mobile',$request->mobile)->get()->first();
+        return redirect(url('login/'.encrypt($user->id)));
+    }
+    public function checkOtp(Request $request){
+        $user = User::where('id',$request->user)->where('otp',$request->otp)->get()->first();
+        if($user){
+            Session::put('userinfo',$user);
+            echo json_encode(array('status'=>'true','message'=>'Success','reload'=>url('')));
+        } else {
+            echo json_encode(array('status'=>'false','message'=>'Please Enter Valid OTP'));
+        }
     }
 }
