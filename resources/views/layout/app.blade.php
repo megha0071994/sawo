@@ -101,18 +101,18 @@
                     <div class="links">
                         <h4>Quik Links</h4>
                         <ul>
-                            <li> <a href="about_us.html"> About Us</a></li>
-                            <li> <a href="faq.html"> FAQ</a></li>
-                            <li> <a href="contact.html"> Contact Us</a></li>
-                            <li> <a href="career.html"> Career</a></li>
+                            <li> <a href="{{ url('about') }}"> About Us</a></li>
+                            <li> <a href="{{ url('faq') }}"> FAQ</a></li>
+                            <li> <a href="{{ url('contact') }}"> Contact Us</a></li>
+                            <li> <a href="{{ url('career') }}"> Career</a></li>
                         </ul>
                     </div>
                     <div class="support">
                         <h4>Support</h4>
                         <ul>
-                            <li> <a href="terms.html">Privacy Policy</a></li>
-                            <li><a href="help.html"> Help And Support</a></li>
-                            <li><a href="terms.html">Terms And Condition</a></li>
+                            <li> <a href="{{ url('privacy-policy') }}">Privacy Policy</a></li>
+                            <li><a href="{{ url('help-support') }}"> Help And Support</a></li>
+                            <li><a href="{{ url('terms-condition') }}">Terms And Condition</a></li>
 
                         </ul>
                     </div>
@@ -122,7 +122,7 @@
 
     </footer>
     <div class="footer-bottom">
-        <h4>Copyright @ 2021 <span class="color">Sawo</span> </h4>
+        <h4>Copyright @ {{date('Y')}} <span class="color">Sawo</span> </h4>
     </div>
 
     <!-- js links -->

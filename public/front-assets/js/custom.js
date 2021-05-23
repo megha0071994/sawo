@@ -37,3 +37,64 @@ $(document).on('submit', '.database_operations', function() {
     });
     return false;
 });
+$(document).on('keyup','#from_location',function(){
+    let loc = $(this).val();
+    if(loc!='') {
+        loc  = loc.replace(" ", "+");
+        $.get('https://maps.googleapis.com/maps/api/place/autocomplete/json?input='+loc+'&types=address&key=AIzaSyATAq7GmtDab3CM4EGNKwCqvf9lW4B4C44',function(fb){
+            if(fb.status=='OK') {
+                $('.from_response').css({'display':'block'});
+                $('.from_response').html('');
+                fb.predictions.map((item)=>{
+                    $('.from_response').append('<li class="selectAddress1" data-address="'+item.description+'">'+item.description+'</li>');
+                })
+            } else {
+                $('.from_response').css({'display':'none'});
+                $('.from_response').html('');
+                console.log(fb.status);
+            }
+        })
+    } else {
+        $('.from_response').css({'display':'none'});
+        $('.from_response').html('');
+    }
+});
+$(document).on('keyup','#to_location',function(){
+    let loc = $(this).val();
+    if(loc!='') {
+        loc  = loc.replace(" ", "+");
+        $.get('https://maps.googleapis.com/maps/api/place/autocomplete/json?input='+loc+'&types=address&key=AIzaSyATAq7GmtDab3CM4EGNKwCqvf9lW4B4C44',function(fb){
+            if(fb.status=='OK') {
+                $('.to_response').css({'display':'block'});
+                $('.to_response').html('');
+                fb.predictions.map((item)=>{
+                    console.log(item)
+                    $('.to_response').append('<li class="selectAddress2" data-address="'+item.description+'" data-city="'+item.terms[2].value+'">'+item.description+'</li>');
+                })
+            } else {
+                $('.to_response').css({'display':'none'});
+                $('.to_response').html('');
+                console.log(fb.status);
+            }
+        })
+    } else {
+        $('.to_response').css({'display':'none'});
+        $('.to_response').html('');
+    }
+});
+$(document).on('click','.selectAddress1',function(){
+    var address = String($(this).attr('data-address'));
+    $('#from_location').val(address);
+    $('#city_from').val(address.split(',').reverse()[2]);
+    $('.from_response').css({'display':'none'});
+    $('.from_response').html('');
+
+});
+$(document).on('click','.selectAddress2',function(){
+    var address = String($(this).attr('data-address'));
+    $('#city_to').val(address.split(',').reverse()[2]);
+    $('#to_location').val(address);
+    $('.to_response').css({'display':'none'});
+    $('.to_response').html('');
+
+});

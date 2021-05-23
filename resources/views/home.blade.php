@@ -26,11 +26,11 @@
                                     <div id="loading" class="tab-pane fade in active vehi show">
                                         <div class="stack_input">
                                             <h6>Pickup Location</h6>
-                                            <input class="form-control">
+                                            <input id="from_location" class="form-control">
                                         </div>
                                         <div class="stack_input">
                                             <h6>Drop Location</h6>
-                                            <input class="form-control">
+                                            <input id="to_location" class="form-control">
                                         </div>
                                         <div class="vehicle-box">
                                             <div class="vehi-img">

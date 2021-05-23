@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', ['App\Http\Controllers\HomeController'::class, 'index']);
+Route::get('/more-details', ['App\Http\Controllers\HomeController'::class, 'more_details']);
+Route::match(['get','post'],'/contact', ['App\Http\Controllers\HomeController'::class, 'contact']);
 Route::get('/login', ['App\Http\Controllers\HomeController'::class, 'login']);
 Route::get('/login/{id}', ['App\Http\Controllers\HomeController'::class, 'login']);
 Route::post('/sendOtp', ['App\Http\Controllers\HomeController'::class, 'sendOtp']);

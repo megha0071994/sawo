@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\ContactRequest;
 use Session;
 class HomeController extends Controller
 {
@@ -17,6 +18,9 @@ class HomeController extends Controller
             return view('login');   
         }
             
+    }
+    public function more_details(){
+        return view('more_details'); 
     }
     public function sendOtp(Request $request){
         $user = User::where('mobile',$request->mobile)->get()->first();
@@ -40,5 +44,19 @@ class HomeController extends Controller
         } else {
             echo json_encode(array('status'=>'false','message'=>'Please Enter Valid OTP'));
         }
+    }
+    public function contact(Request $request){
+        if(request()->ajax()) {
+            $new = new ContactRequest();
+            $new->name = $request->name;
+            $new->email = $request->email;
+            $new->mobileNo = $request->mobile;
+            $new->comment = $request->message;
+            $new->save();
+            echo json_encode(array('status'=>'true','message'=>'Your Contact Query Successfully Send','reload'=>'0'));
+        } else {
+            return view('contact');
+        }
+        
     }
 }
