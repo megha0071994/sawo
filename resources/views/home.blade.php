@@ -7,13 +7,12 @@
 
 
                     <div class="hero-form">
-                        <form action="">
+                        <form action="{{ url('more-details') }}" method="get">
                             <h4>For multiple stops, choose Round Trip</h4>
                             <h5>The best way to travel around town</h5>
 
                             <div class="stack_input n_stack">
                                 <h6>Select Vehicle</h6>
-
 
 
                                 <ul class="nav nav-tabs vehicle-select">
@@ -23,14 +22,20 @@
                                 </ul>
 
                                 <div class="tab-content">
+                                
                                     <div id="loading" class="tab-pane fade in active vehi show">
                                         <div class="stack_input">
                                             <h6>Pickup Location</h6>
-                                            <input id="from_location" class="form-control">
+                                            <input name="from_location" id="from_location" required="required" class="form-control">
+                                            <input type="hidden" id="city_from">
+                                            <ul class="response from_response"  style="display: none;"></ul>
                                         </div>
                                         <div class="stack_input">
                                             <h6>Drop Location</h6>
-                                            <input id="to_location" class="form-control">
+                                            <input name="to_location" id="to_location" required="required" class="form-control">
+                                            <input type="hidden" id="city_to">
+                                            <ul class="response to_response"  style="display: none;">
+                                             </ul>
                                         </div>
                                         <div class="vehicle-box">
                                             <div class="vehi-img">
@@ -102,14 +107,13 @@
                                             <input type="radio" name="info" id="" class="vehi-radio">
                                         </div>
                                     </div>
+                                    
                                     <div id="other" class="tab-pane fade vehi">
                                         <div class="stack_input">
-                                            <h6>Pickup Location</h6>
-                                            <input class="form-control">
-                                        </div>
-                                        <div class="stack_input">
-                                            <h6>Drop Location</h6>
-                                            <input class="form-control">
+                                            <h6>Work Location</h6>
+                                            <input class="form-control" id="work_location">
+                                            <input type="hidden" id="city_work">
+                                            <ul class="response work_response"  style="display: none;"></ul>
                                         </div>
                                         <div class="vehicle-box">
                                             <div class="vehi-img">
@@ -185,7 +189,7 @@
                                 </div>
                             </div>
                             <div class="hero-btn">
-                                <a href="" class="btn-primary mt-3">Search Rentals</a>
+                                <button  type="submit" class="btn-primary mt-3">Search Rentals</button>
                             </div>
                         </form>
                     </div>
@@ -767,8 +771,7 @@
                 <div class="container">
 
 
-                    <form id="contact-form" name="myForm" class="form" action="#" onsubmit="return validateForm()"
-                        method="POST" role="form">
+                    <form  class="form database_operations" action="{{ url('contact') }}" >
 
                         <div class="row">
 
@@ -776,7 +779,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label" id="nameLabel" for="name"></label>
-                                    <input type="text" class="form-control" id="name" name="name"
+                                    {{csrf_field()}}
+                                    <input required="required" type="text" class="form-control" id="name" name="name"
                                         placeholder="Your name" tabindex="1">
                                 </div>
                             </div>
@@ -785,15 +789,22 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label" id="emailLabel" for="email"></label>
-                                    <input type="email" class="form-control" id="email" name="email"
+                                    <input required="required" type="email" class="form-control" id="email" name="email"
                                         placeholder="Your Email" tabindex="2">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-label" id="mobileLabel" for="mobile"></label>
+                                    <input required="required" type="text" class="form-control" id="mobile" name="mobile"
+                                        placeholder="Your Mobile No" tabindex="2">
                                 </div>
                             </div>
 
                             <div class="col-md-12 ch-area">
                                 <div class="form-group">
                                     <label class="form-label" id="messageLabel" for="message"></label>
-                                    <textarea rows="1" cols="60" name="message" class="form-control" id="message"
+                                    <textarea required="required" rows="1" cols="60" name="message" class="form-control" id="message"
                                         placeholder="Your message" tabindex="4"></textarea>
                                 </div>
                             </div>
