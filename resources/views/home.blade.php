@@ -8,6 +8,7 @@
 
                     <div class="hero-form">
                         <form action="{{ url('more-details') }}" method="get">
+                        <input type="hidden" name="filter_type" id="filter_type" value="1" />
                             <h4>For multiple stops, choose Round Trip</h4>
                             <h5>The best way to travel around town</h5>
 
@@ -16,103 +17,48 @@
 
 
                                 <ul class="nav nav-tabs vehicle-select">
-                                    <li><a data-toggle="tab" class="active" href="#loading">Loading Rentals</a></li>
-                                    <li><a data-toggle="tab" href="#other">Other Rentals</a></li>
+                                    <li><a data-toggle="tab" class="active filtertab" data-index="1" href="#loading">Loading Rentals</a></li>
+                                    <li><a data-toggle="tab" class="filtertab" data-index="0" href="#other">Other Rentals</a></li>
 
                                 </ul>
 
                                 <div class="tab-content">
-                                
+
                                     <div id="loading" class="tab-pane fade in active vehi show">
                                         <div class="stack_input">
                                             <h6>Pickup Location</h6>
-                                            <input name="from_location" id="from_location" required="required" class="form-control">
-                                            <input type="hidden" id="city_from">
+                                            <input name="from_location" id="from_location" class="form-control">
+                                            <input type="hidden" id="city_from" name="city_from">
                                             <ul class="response from_response"  style="display: none;"></ul>
                                         </div>
                                         <div class="stack_input">
                                             <h6>Drop Location</h6>
-                                            <input name="to_location" id="to_location" required="required" class="form-control">
-                                            <input type="hidden" id="city_to">
+                                            <input name="to_location" id="to_location" class="form-control">
+                                            <input type="hidden" id="city_to" name="city_to">
                                             <ul class="response to_response"  style="display: none;">
                                              </ul>
                                         </div>
+                                        @foreach($subCategory1 as $key => $scat1)
                                         <div class="vehicle-box">
                                             <div class="vehi-img">
                                                 <img src="{{ url('/') }}/public/front-assets/images/vehicle-3.png" alt="">
                                             </div>
                                             <div class="vehi-info">
-                                                <h5>Six Wheeler</h5>
-                                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+                                                <h5>{{ $scat1['name'] }}</h5>
                                             </div>
                                             <div class="vehi-icon">
                                                 <span><i class="fas fa-chevron-right"></i></span>
                                             </div>
-                                            <input type="radio" name="info" checked="checked" id="" class="vehi-radio">
+                                            <input type="radio" name="type" value="{{ $scat1['id'] }}" @if($key==0) checked="checked" @endif  class="vehi-radio">
                                         </div>
-
-                                        <div class="vehicle-box">
-                                            <div class="vehi-img">
-                                                <img src="{{ url('/') }}/public/front-assets/images/vehicle-3.png" alt="">
-                                            </div>
-                                            <div class="vehi-info">
-                                                <h5>Six Wheeler</h5>
-                                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-                                            </div>
-                                            <div class="vehi-icon">
-                                                <span><i class="fas fa-chevron-right"></i></span>
-                                            </div>
-                                            <input type="radio" name="info" id="" class="vehi-radio">
-                                        </div>
-
-                                        <div class="vehicle-box">
-                                            <div class="vehi-img">
-                                                <img src="{{ url('/') }}/public/front-assets/images/vehicle-3.png" alt="">
-                                            </div>
-                                            <div class="vehi-info">
-                                                <h5>Six Wheeler</h5>
-                                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-                                            </div>
-                                            <div class="vehi-icon">
-                                                <span><i class="fas fa-chevron-right"></i></span>
-                                            </div>
-                                            <input type="radio" name="info" id="" class="vehi-radio">
-                                        </div>
-
-                                        <div class="vehicle-box">
-                                            <div class="vehi-img">
-                                                <img src="{{ url('/') }}/public/front-assets/images/vehicle-3.png" alt="">
-                                            </div>
-                                            <div class="vehi-info">
-                                                <h5>Six Wheeler</h5>
-                                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-                                            </div>
-                                            <div class="vehi-icon">
-                                                <span><i class="fas fa-chevron-right"></i></span>
-                                            </div>
-                                            <input type="radio" name="info" id="" class="vehi-radio">
-                                        </div>
-
-                                        <div class="vehicle-box">
-                                            <div class="vehi-img">
-                                                <img src="{{ url('/') }}/public/front-assets/images/vehicle-3.png" alt="">
-                                            </div>
-                                            <div class="vehi-info">
-                                                <h5>Six Wheeler</h5>
-                                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-                                            </div>
-                                            <div class="vehi-icon">
-                                                <span><i class="fas fa-chevron-right"></i></span>
-                                            </div>
-                                            <input type="radio" name="info" id="" class="vehi-radio">
-                                        </div>
+                                        @endforeach
                                     </div>
-                                    
+
                                     <div id="other" class="tab-pane fade vehi">
                                         <div class="stack_input">
                                             <h6>Work Location</h6>
-                                            <input class="form-control" id="work_location">
-                                            <input type="hidden" id="city_work">
+                                            <input class="form-control" id="work_location" name="work_location">
+                                            <input type="hidden" id="city_work" name="city_work">
                                             <ul class="response work_response"  style="display: none;"></ul>
                                         </div>
                                         <div class="vehicle-box">
@@ -126,7 +72,7 @@
                                             <div class="vehi-icon">
                                                 <span><i class="fas fa-chevron-right"></i></span>
                                             </div>
-                                            <input type="radio" name="info" checked="checked" id="" class="vehi-radio">
+                                            <input type="radio"  name="type" value="5" checked="checked" id="" class="vehi-radio">
                                         </div>
 
                                         <div class="vehicle-box">
@@ -314,21 +260,23 @@
 
                 <div class="col-md-12">
                     <ul class="nav nav-pills justify-content-end vehic">
-                        <li><a class="active" data-toggle="pill" href="#home">Loading</a></li>
-                        <li><a data-toggle="pill" href="#menu1">Other Rental</a></li>
-                        <li><a data-toggle="pill" href="#menu2">Cab Rental</a></li>
-                        <li><a data-toggle="pill" href="#menu3">Cab</a></li>
+                    @foreach($subCategory as $key => $scat)
+                        <li><a @if($key==0) class="active" @endif data-toggle="pill" href="#Block{{ $scat['id'] }}">{{ $scat['name'] }}</a></li>
+                    @endforeach
                     </ul>
 
                     <div class="tab-content">
-                        <div id="home" class="tab-pane fade in active show">
+                    @foreach($subCategory as $key => $scat)
+                        <div id="Block{{ $scat['id'] }}" class="tab-pane fade in @if($key==0) active show @endif">
                             <div class="vehical-cards p-6">
+                            <?php $vehicle_types = get_vehicle_type($scat['id']); ?>
+                            @foreach($vehicle_types as $vt)
                                 <div class="vehical-card">
                                     <div class="v-img">
                                         <img src="{{ url('/') }}/public/front-assets/images/vid-5e8d9a170b896-big-jpg-500x500.png" alt="">
                                     </div>
-                                    <h4>Three Wheeler</h4>
-                                    <div class="ratings">
+                                    <h4>{{ $vt['name'] }}</h4>
+                                    <div class="ratings" style="display:none">
                                         <span>4.5</span>
                                         <ul>
                                             <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
@@ -340,295 +288,10 @@
                                         </ul>
                                     </div>
                                 </div>
-
-
-                                <div class="vehical-card">
-                                    <div class="v-img">
-                                        <img src="{{ url('/') }}/public/front-assets/images/vehicle-2.png" alt="">
-                                    </div>
-                                    <h4>Three Wheeler</h4>
-                                    <div class="ratings">
-                                        <span>4.5</span>
-                                        <ul>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-
-                                        </ul>
-                                    </div>
-                                </div>
-
-
-                                <div class="vehical-card ">
-                                    <div class="v-img">
-                                        <img src="{{ url('/') }}/public/front-assets/images/vehicle-3.png" alt="">
-                                    </div>
-                                    <h4>Three Wheeler</h4>
-                                    <div class="ratings">
-                                        <span>4.5</span>
-                                        <ul>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="vehical-card">
-                                    <div class="v-img">
-                                        <img src="{{ url('/') }}/public/front-assets/images/vid-5e8d9a170b896-big-jpg-500x500.png" alt="">
-                                    </div>
-                                    <h4>Three Wheeler</h4>
-                                    <div class="ratings">
-                                        <span>4.5</span>
-                                        <ul>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-
-                                        </ul>
-                                    </div>
-                                </div>
+                            @endforeach
                             </div>
                         </div>
-                        <div id="menu1" class="tab-pane fade">
-                            <div class="vehical-cards p-6">
-                                <div class="vehical-card">
-                                    <div class="v-img">
-                                        <img src="{{ url('/') }}/public/front-assets/images/vid-5e8d9a170b896-big-jpg-500x500.png" alt="">
-                                    </div>
-                                    <h4>Three Wheeler</h4>
-                                    <div class="ratings">
-                                        <span>4.5</span>
-                                        <ul>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-
-                                        </ul>
-                                    </div>
-                                </div>
-
-
-                                <div class="vehical-card">
-                                    <div class="v-img">
-                                        <img src="{{ url('/') }}/public/front-assets/images/vehicle-2.png" alt="">
-                                    </div>
-                                    <h4>Three Wheeler</h4>
-                                    <div class="ratings">
-                                        <span>4.5</span>
-                                        <ul>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-
-                                        </ul>
-                                    </div>
-                                </div>
-
-
-                                <div class="vehical-card ">
-                                    <div class="v-img">
-                                        <img src="{{ url('/') }}/public/front-assets/images/vehicle-3.png" alt="">
-                                    </div>
-                                    <h4>Three Wheeler</h4>
-                                    <div class="ratings">
-                                        <span>4.5</span>
-                                        <ul>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="vehical-card">
-                                    <div class="v-img">
-                                        <img src="{{ url('/') }}/public/front-assets/images/vid-5e8d9a170b896-big-jpg-500x500.png" alt="">
-                                    </div>
-                                    <h4>Three Wheeler</h4>
-                                    <div class="ratings">
-                                        <span>4.5</span>
-                                        <ul>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="menu2" class="tab-pane fade">
-                            <div class="vehical-cards p-6">
-                                <div class="vehical-card">
-                                    <div class="v-img">
-                                        <img src="{{ url('/') }}/public/front-assets/images/vid-5e8d9a170b896-big-jpg-500x500.png" alt="">
-                                    </div>
-                                    <h4>Three Wheeler</h4>
-                                    <div class="ratings">
-                                        <span>4.5</span>
-                                        <ul>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-
-                                        </ul>
-                                    </div>
-                                </div>
-
-
-                                <div class="vehical-card">
-                                    <div class="v-img">
-                                        <img src="{{ url('/') }}/public/front-assets/images/vehicle-2.png" alt="">
-                                    </div>
-                                    <h4>Three Wheeler</h4>
-                                    <div class="ratings">
-                                        <span>4.5</span>
-                                        <ul>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-
-                                        </ul>
-                                    </div>
-                                </div>
-
-
-                                <div class="vehical-card ">
-                                    <div class="v-img">
-                                        <img src="{{ url('/') }}/public/front-assets/images/vehicle-3.png" alt="">
-                                    </div>
-                                    <h4>Three Wheeler</h4>
-                                    <div class="ratings">
-                                        <span>4.5</span>
-                                        <ul>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="vehical-card">
-                                    <div class="v-img">
-                                        <img src="{{ url('/') }}/public/front-assets/images/vid-5e8d9a170b896-big-jpg-500x500.png" alt="">
-                                    </div>
-                                    <h4>Three Wheeler</h4>
-                                    <div class="ratings">
-                                        <span>4.5</span>
-                                        <ul>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="menu3" class="tab-pane fade">
-                            <div class="vehical-cards p-6">
-                                <div class="vehical-card">
-                                    <div class="v-img">
-                                        <img src="{{ url('/') }}/public/front-assets/images/vid-5e8d9a170b896-big-jpg-500x500.png" alt="">
-                                    </div>
-                                    <h4>Three Wheeler</h4>
-                                    <div class="ratings">
-                                        <span>4.5</span>
-                                        <ul>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-
-                                        </ul>
-                                    </div>
-                                </div>
-
-
-                                <div class="vehical-card">
-                                    <div class="v-img">
-                                        <img src="{{ url('/') }}/public/front-assets/images/vehicle-2.png" alt="">
-                                    </div>
-                                    <h4>Three Wheeler</h4>
-                                    <div class="ratings">
-                                        <span>4.5</span>
-                                        <ul>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-
-                                        </ul>
-                                    </div>
-                                </div>
-
-
-                                <div class="vehical-card ">
-                                    <div class="v-img">
-                                        <img src="{{ url('/') }}/public/front-assets/images/vehicle-3.png" alt="">
-                                    </div>
-                                    <h4>Three Wheeler</h4>
-                                    <div class="ratings">
-                                        <span>4.5</span>
-                                        <ul>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="vehical-card">
-                                    <div class="v-img">
-                                        <img src="{{ url('/') }}/public/front-assets/images/vid-5e8d9a170b896-big-jpg-500x500.png" alt="">
-                                    </div>
-                                    <h4>Three Wheeler</h4>
-                                    <div class="ratings">
-                                        <span>4.5</span>
-                                        <ul>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-                                            <li><img src="{{ url('/') }}/public/front-assets/images/star.png" alt=""></li>
-
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

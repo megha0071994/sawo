@@ -1,6 +1,6 @@
 @extends('admin.layout.app')
 @section('content')
-<section class="content">	  
+<section class="content">
 	<div class="card">
 		<div class="card-header">
 			<h3 class="card-title">{{$page_title2}}</h3>
@@ -130,7 +130,7 @@
                         </div>
                     </div>
 				</div>
-			</div>			
+			</div>
             <div class="row">
                 <div class="col-sm-12">
                     <div class="form-group">
@@ -147,7 +147,7 @@
 						</div>
                     </div>
                 </div>
-			</div>			
+			</div>
             <div class="row">
                 <div class="col-sm-12">
                     <div class="form-group">
@@ -169,7 +169,7 @@
                         <label>{{  __('lang.InsuranceValidfrom') }}</label>
                         <input type="date" value="{{ $v->insurance_valid_from }}" required name="ins_valid_from"  class="form-control">
                     </div>
-                </div> 
+                </div>
                 <div class="col-sm-4">
                     <div class="form-group">
                         <label>{{  __('lang.InsuranceValidto') }}</label>
@@ -185,9 +185,9 @@
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
-                       
+
                     </div>
-                </div> 
+                </div>
                 <div class="col-sm-4">
                     <div class="form-group">
                     </div>
@@ -223,14 +223,14 @@
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
-                       
+
                     </div>
-                </div> 
+                </div>
                 <div class="col-sm-4">
                     <div class="form-group">
-                       
+
                     </div>
-                </div> 
+                </div>
             </div>
 
             <div class="row">
@@ -263,12 +263,28 @@
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
-                       
+
                     </div>
-                </div> 
+                </div>
                 <div class="col-sm-4">
                     <div class="form-group">
                        </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                       </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <img src="{{ url('public/uploads/documents/'.$v->puc_doc) }}" width="200px" />
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+
+                    </div>
                 </div>
             </div>
 
@@ -302,12 +318,28 @@
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
-                       
+
                     </div>
-                </div> 
+                </div>
                 <div class="col-sm-4">
                     <div class="form-group">
                        </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                       </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <img src="{{ url('public/uploads/documents/'.$v->PoliceverificationDoc) }}" width="200px" />
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+
+                    </div>
                 </div>
             </div>
 
@@ -341,9 +373,9 @@
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
-                       
+
                     </div>
-                </div> 
+                </div>
                 <div class="col-sm-4">
                     <div class="form-group">
                        </div>
@@ -365,7 +397,7 @@
                     <button class="btn btn-primary">{{  __('lang.update') }}</button>
                 </div>
             </div>
-        </form>            
+        </form>
 		</div>
 	</div>
 </section>

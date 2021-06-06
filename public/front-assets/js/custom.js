@@ -84,15 +84,19 @@ $(document).on('keyup','#to_location',function(){
 });
 $(document).on('click','.selectAddress1',function(){
     var address = String($(this).attr('data-address'));
+    $.get(BASE_URL+'/cityname/'+address.split(',').reverse()[2].trim(),function(fb){
+        $('#city_from').val(fb);
+    })
     $('#from_location').val(address);
-    $('#city_from').val(address.split(',').reverse()[2]);
     $('.from_response').css({'display':'none'});
     $('.from_response').html('');
 
 });
 $(document).on('click','.selectAddress2',function(){
     var address = String($(this).attr('data-address'));
-    $('#city_to').val(address.split(',').reverse()[2]);
+    $.get(BASE_URL+'/cityname/'+address.split(',').reverse()[2].trim(),function(fb){
+        $('#city_to').val(fb);
+    })
     $('#to_location').val(address);
     $('.to_response').css({'display':'none'});
     $('.to_response').html('');
@@ -124,9 +128,14 @@ $(document).on('keyup','#work_location',function(){
 });
 $(document).on('click','.selectAddress3',function(){
     var address = String($(this).attr('data-address'));
-    $('#city_work').val(address.split(',').reverse()[2]);
+    $.get(BASE_URL+'/cityname/'+address.split(',').reverse()[2].trim(),function(fb){
+        $('#city_work').val(fb);
+    })
     $('#work_location').val(address);
     $('.work_response').css({'display':'none'});
     $('.work_response').html('');
 
+});
+$(document).on('click','.filtertab',function(){
+    $('#filter_type').val($(this).attr('data-index'));
 });

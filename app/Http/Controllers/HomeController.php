@@ -5,21 +5,35 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\ContactRequest;
+use App\Models\SubCategory;
+use App\Models\City;
 use App\Models\Vehicle;
 use App\Models\Driver;
 use Session;
-
 class HomeController extends Controller
 {
     public function index(){
-        return view('home');
+        $data['subCategory'] = SubCategory::where('status','1')->where('deleted_at',0)->get()->toArray();
+        $data['subCategory1'] = SubCategory::where('cat_id',1)->where('status','1')->where('deleted_at',0)->get()->toArray();
+        $data['subCategory2'] = SubCategory::where('cat_id',2)->where('status','1')->where('deleted_at',0)->get()->toArray();
+        return view('home',$data);
+    }
+    public function cityname($name) {
+        $name = trim($name);
+        $City = City::where('name',$name)->get()->toArray();
+        if(count($City)) {
+            echo $City[0]['id'];
+        } else {
+            echo 1;
+        }
     }
     public function login() {
         if(Session::get('userinfo')) {
             return redirect('/');
         } else {
-            return view('login');   
+            return view('login');
         }
+
     }
     public function more_details(){
 		if(!$_REQUEST){
@@ -32,7 +46,7 @@ class HomeController extends Controller
 		if(isset($_REQUEST['type'])){
 			$second_level_cat = $_REQUEST['type'];
 		}
-		
+
 		if(isset($_REQUEST['filter_type'])){
 			$filter_type = $_REQUEST['filter_type'];
 			if($filter_type==1){
@@ -40,33 +54,35 @@ class HomeController extends Controller
 				$data['from_city'] = $_REQUEST['city_from'];
 				$data['to_location'] = $_REQUEST['to_location'];
 				$data['to_city'] = $_REQUEST['city_to'];
-				
+
 				$vehicle = Vehicle::select('sw_driver.fname', 'sw_driver.lname', 'sw_vehicle.driver_id', 'sw_vehicle.id as vehicle_tb_id', 'sw_vehicle.vehicle_image')
 							->join('sw_driver', 'sw_driver.id', '=', 'sw_vehicle.driver_id')
 							->where('sw_vehicle.work_location', $data['from_city'])
+							->where('sw_vehicle.cat_id', 1)
 							->get()->toArray();
 			}
 			if($filter_type==0){
 				$data['work_location'] = $_REQUEST['work_location'];
 				$data['city_work'] = $_REQUEST['city_work'];
-				
+
 				$vehicle = Vehicle::select('sw_driver.fname', 'sw_driver.lname', 'sw_vehicle.driver_id', 'sw_driver.id', 'sw_vehicle.id as vehicle_tb_id', 'sw_vehicle.vehicle_image')
 							->join('sw_driver', 'sw_driver.id', '=', 'sw_vehicle.driver_id')
 							->where('sw_vehicle.work_location', $data['city_work'])
+							->where('sw_vehicle.cat_id', 2)
 							->get()->toArray();
 			}
 		}
-		
+
 		if(isset($_REQUEST['vehicle_type'])){
 			$data['vehicle_type'] = $_REQUEST['vehicle_type'];
-			
+
 			$vehicle = Vehicle::select('sw_driver.fname', 'sw_driver.lname', 'sw_vehicle.driver_id', 'sw_driver.id', 'sw_vehicle.id as vehicle_tb_id', 'sw_vehicle.vehicle_image')
 							->join('sw_driver', 'sw_driver.id', '=', 'sw_vehicle.driver_id')
 							->where('sw_vehicle.vehicle_type_id', $data['vehicle_type'])
 							->get()->toArray();
 		}
 		// echo "<pre>"; print_r($_REQUEST); die;
-        return view('more_details')->with('vehicle', $vehicle);; 
+        return view('more_details')->with('vehicle', $vehicle);
     }
     public function sendOtp(Request $request){
         $user = User::where('mobile',$request->mobile)->get()->first();
@@ -103,6 +119,6 @@ class HomeController extends Controller
         } else {
             return view('contact');
         }
-        
+
     }
 }

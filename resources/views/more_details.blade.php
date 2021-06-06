@@ -23,6 +23,7 @@
                                 </ul>
                             </div>-->
                             <div class="stack_input n_stack">
+								@if($vehicle)
                                 <h6>Select Vehicle</h6>
 								@foreach($vehicle as $veh)
                                 <div class="vehi listing-p">
@@ -59,9 +60,10 @@
                                     </div>
                                 </div>
 								@endforeach
-                            </div>
-                            <div class="hero-btn">
-                                <a href="" class="btn-primary mt-3">Search Rentals</a>
+								@else
+									<h3 class="text-danger text-center mt-5 mb-5">No Vehicle Found</h3>
+									<a href="{{url('')}}">Go Back To Search</a>
+								@endif
                             </div>
                         </form>
                     </div>
@@ -69,4 +71,4 @@
             </div>
         </div>
     </section>
-    @endsection 
+    @endsection

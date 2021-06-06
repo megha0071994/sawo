@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="{{ url('/') }}/public/front-assets/css/style.css">
     <!-- SWIPER SLIDER -->
     <link rel="stylesheet" href="{{ url('/') }}/public/front-assets/css/swiper.css" />
+    <script>
+    var BASE_URL = "{{ url('/') }}";
+    </script>
 </head>
 
 <body>
@@ -41,7 +44,7 @@
                     <input type="checkbox" id="nav-check">
                     <div class="nav-header">
                         <div class="nav-title">
-                            <a href="index.html"> <img src="{{ url('/') }}/public/front-assets/images/header/logo.png" alt=""></a>
+                            <a href="{{url('')}}"> <img src="{{ url('/') }}/public/front-assets/images/header/logo.png" alt=""></a>
                         </div>
                     </div>
                     <div class="nav-btn">
@@ -104,7 +107,6 @@
                             <li> <a href="{{ url('about') }}"> About Us</a></li>
                             <li> <a href="{{ url('faq') }}"> FAQ</a></li>
                             <li> <a href="{{ url('contact') }}"> Contact Us</a></li>
-                            <li> <a href="{{ url('career') }}"> Career</a></li>
                         </ul>
                     </div>
                     <div class="support">
