@@ -1,5 +1,6 @@
 <?php
 use App\Models\Setting; 
+use App\Models\VehicleType;
 function get_site_settings($index)
 {
 	$array = array(
@@ -15,7 +16,9 @@ function get_text($key)
 	else 
 		return '';
 }
-
+function get_vehicle_type($id){
+	return VehicleType::where('status',1)->where('sub_cat_id',$id)->where('deleted_at',0)->get()->toArray();
+}
 function send_email($to,$from,$fromName,$subject,$htmlContent)
 {
 		$headers = "MIME-Version: 1.0" . "\r\n"; 

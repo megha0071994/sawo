@@ -33,4 +33,9 @@ class AdminAuth extends Controller
 			}
 			echo json_encode($arr);
 	}
+	public function logout(Request $request)
+	{
+		$request->session()->forget('admin_session');
+		return redirect(url('admin'));
+	}
 }

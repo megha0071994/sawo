@@ -118,7 +118,24 @@
                         <label>{{  __('lang.InsuranceValidfrom') }}</label>
                         <input type="date" value="{{ $v->insurance_valid_from }}" required name="ins_valid_from"  class="form-control">
                     </div>
+                </div> 
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <img src="{{ url('public/uploads/documents/'.$v->rc_doc) }}" width="200px" />
+                     </div>
                 </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <img src="{{ url('public/uploads/documents/'.$v->insurance_doc) }}" width="200px" />
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                       
+                    </div>
+                </div> 
             </div>
             <div class="row">
                 <div class="col-sm-4">
@@ -139,6 +156,22 @@
                         <input  type="date" value="{{ $v->PermitValidfrom }}" required name="pvalid_from" class="form-control">
                     </div>
                 </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                       </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <img src="{{ url('public/uploads/documents/'.$v->permit_doc) }}" width="200px" />
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                       
+                    </div>
+                </div> 
             </div>
 
             <div class="row">
@@ -161,7 +194,22 @@
                     </div>
                 </div>
             </div>
-
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                       </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <img src="{{ url('public/uploads/documents/'.$v->tax_doc) }}" width="200px" />
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                       
+                    </div>
+                </div> 
+            </div>
 
             <div class="row">
                 <div class="col-sm-4">
@@ -183,6 +231,22 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                       </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <img src="{{ url('public/uploads/documents/'.$v->puc_doc) }}" width="200px" />
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                       
+                    </div>
+                </div> 
+            </div>
 
             <div class="row">
                 <div class="col-sm-4">
@@ -203,6 +267,22 @@
                         <input  type="date" value="{{ $v->permit_valid_from }}" required name="pv_valid_from" class="form-control">
                     </div>
                 </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                       </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <img src="{{ url('public/uploads/documents/'.$v->PoliceverificationDoc) }}" width="200px" />
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                       
+                    </div>
+                </div> 
             </div>
 
 
