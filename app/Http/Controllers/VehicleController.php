@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\Driver;
 use App\Models\Category;
 use App\Models\SubCategory;
+use App\Models\VehicleType;
+use App\Models\City;
 use App\Models\Vehicle;
+
 class VehicleController extends Controller
 {
     public function index(){
@@ -18,12 +21,24 @@ class VehicleController extends Controller
     }
     public function add(Request $request){
         if(request()->ajax()){
+            $vehicle_image = '';
             $rc_doc = '';
             $ins_doc = '';
             $pdoc = '';
             $tax_doc = '';
             $pub_doc = '';
             $pvdoc = '';
+            if ($request->hasFile('vehicle_image')) {
+                $file = $request->file('vehicle_image');
+                $file->getClientOriginalName();
+                $file->getClientOriginalExtension();
+                $file->getRealPath();
+                $file->getSize();
+                $file->getMimeType();
+                $destinationPath = 'public/uploads/vehicle-image';
+                $vehicle_image = "vehicle-image-".time().'.'.$file->getClientOriginalExtension();
+                $resp = $file->move($destinationPath,$vehicle_image);
+            }
             if ($request->hasFile('rc_doc')) {
                 $file = $request->file('rc_doc');
                 $file->getClientOriginalName();
@@ -94,7 +109,7 @@ class VehicleController extends Controller
             $obj->driver_id = $request->driver;
             $obj->cat_id = $request->category;
             $obj->sub_cat_id = $request->sub_category;
-            //$obj->vehicle_type_id = $request->driver;
+            $obj->vehicle_type_id = $request->vehicle_type_id;
             $obj->vehicle_no = $request->vehicle_number;
             $obj->vehicle_name = $request->vehicle_name;
             
@@ -105,6 +120,7 @@ class VehicleController extends Controller
             $obj->max_loading = $request->max_loading;
 
             $obj->work_location = $request->work_location;
+            $obj->vehicle_image = $vehicle_image;
             $obj->rc_doc = $rc_doc;
             $obj->insurance_doc = $ins_doc;
             $obj->insurance_valid_from = $request->ins_valid_from;
@@ -131,15 +147,23 @@ class VehicleController extends Controller
                 "page_title" => __('lang.addvehicle'),
                 "page_title2" => __('lang.addvehicle'),
                 'drivers'=>Driver::where('status','1')->where('deleted_at','0')->get()->toArray(),
-                'category'=>Category::where('status','1')->where('deleted_at','0')->get()->toArray()
+                'category'=>Category::where('status','1')->where('deleted_at','0')->get()->toArray(),
+                'cities'=>City::orderBy('name', 'ASC')->get()->toArray()
             );
             return view('admin.vehicle.add',$data);
         }
         
     }
     public function subcat($id) {
-        $sub_cat = SubCategory::where('status',1)->where('deleted_at',0)->get()->toArray();
-        echo "<option value=''>Select Category</option>";
+        $sub_cat = SubCategory::where('status',1)->where('deleted_at',0)->where('cat_id', $id)->get()->toArray();
+        echo "<option value=''>".__('lang.SelectSubCategory')."</option>";
+        foreach($sub_cat as $scat){
+            echo "<option value='".$scat['id']."'>".$scat['name']."</option>";
+        } 
+    }
+    public function vehicle_type($id) {
+        $sub_cat = VehicleType::where('status',1)->where('deleted_at',0)->where('sub_cat_id', $id)->get()->toArray();
+        echo "<option value=''>".__('lang.SelectVehicleType')."</option>";
         foreach($sub_cat as $scat){
             echo "<option value='".$scat['id']."'>".$scat['name']."</option>";
         } 
@@ -245,6 +269,7 @@ class VehicleController extends Controller
     }
     public function edit(Request $request,$id){
         if(request()->ajax()){
+            $vehicle_image = '';
             $rc_doc = '';
             $ins_doc = '';
             $pdoc = '';
@@ -262,6 +287,17 @@ class VehicleController extends Controller
                 $destinationPath = 'public/uploads/documents';
                 $rc_doc = "rc_doc_".time().'.'.$file->getClientOriginalExtension();
                 $resp = $file->move($destinationPath,$rc_doc);
+            } 
+            if ($request->hasFile('vehicle_image')) {
+                $file = $request->file('vehicle_image');
+                $file->getClientOriginalName();
+                $file->getClientOriginalExtension();
+                $file->getRealPath();
+                $file->getSize();
+                $file->getMimeType();
+                $destinationPath = 'public/uploads/vehicle-image';
+                $vehicle_image = "vehicle-image".time().'.'.$file->getClientOriginalExtension();
+                $resp = $file->move($destinationPath,$vehicle_image);
             } 
             if ($request->hasFile('ins_doc')) {
                 $file = $request->file('ins_doc');
@@ -322,7 +358,7 @@ class VehicleController extends Controller
             $obj->driver_id = $request->driver;
             $obj->cat_id = $request->category;
             $obj->sub_cat_id = $request->sub_category;
-            //$obj->vehicle_type_id = $request->driver;
+            $obj->vehicle_type_id = $request->vehicle_type_id;
             $obj->vehicle_no = $request->vehicle_number;
             $obj->vehicle_name = $request->vehicle_name;
             
@@ -333,6 +369,9 @@ class VehicleController extends Controller
             $obj->max_loading = $request->max_loading;
 
             $obj->work_location = $request->work_location;
+            if($vehicle_image) {
+                $obj->vehicle_image = $vehicle_image;
+            }
             if($rc_doc) {
                 $obj->rc_doc = $rc_doc;
             }
@@ -371,7 +410,9 @@ class VehicleController extends Controller
                 'drivers'=>Driver::where('status','1')->where('deleted_at','0')->get()->toArray(),
                 'category'=>Category::where('status','1')->where('deleted_at','0')->get()->toArray(),
                 'v'=>Vehicle::where('id',$id)->get()->first(),
-                'subCat'=>SubCategory::where('cat_id',Vehicle::where('id',$id)->get()->first()->cat_id)->get()->toArray()
+                'subCat'=>SubCategory::where('cat_id',Vehicle::where('id',$id)->get()->first()->cat_id)->get()->toArray(),
+                'veh_type'=>VehicleType::where('sub_cat_id',Vehicle::where('id',$id)->get()->first()->sub_cat_id)->get()->toArray(),
+                'cities'=>City::orderBy('name', 'ASC')->get()->toArray()
             );
             return view('admin.vehicle.edit',$data);
         }

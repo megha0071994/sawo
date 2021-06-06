@@ -134,11 +134,11 @@ $(document).on('change', '.changeStatus', function() {
     });
 });
 $(document).on('change', '.getRecordById', function() {
-    show_loader();
     let id = $(this).val();
     let target = $(this).attr('data-target');
     $(target).html('');
     if (id) {
+		show_loader();
         let url = $(this).attr('data-url') + id;
         let _token = $('input[name="_token"]').val();
         $(target).html('');

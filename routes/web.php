@@ -67,6 +67,7 @@ Route::group(['middleware' => 'language'], function() {
 				Route::match(['get','post'],'/add', ['App\Http\Controllers\VehicleController'::class, 'add']);
 				Route::match(['get','post'],'/edit/{id}', ['App\Http\Controllers\VehicleController'::class, 'edit']);
 				Route::post('/subcat/{id}', ['App\Http\Controllers\VehicleController'::class, 'subcat']);
+				Route::post('/vehicle-type/{id}', ['App\Http\Controllers\VehicleController'::class, 'vehicle_type']);
 				Route::post('/manageStatus/{id}', ['App\Http\Controllers\VehicleController'::class, 'manageStatus']);
 				Route::match(['get','post'],'/getvehicle', ['App\Http\Controllers\VehicleController'::class, 'getvehicle']);
 			});

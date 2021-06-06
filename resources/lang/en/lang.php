@@ -33,6 +33,7 @@ return [
 	'delete' => 'Delete',
 	'dashboard' => 'Dashboard',
 	'manage_master' => 'Manage Master',
+	'vehicle_list' => 'Vehicle List',
 	'driver_list' => 'Driver List',
 	'add_driver' => 'Add Driver',
 	'edit_driver' => 'Edit Driver',
@@ -83,7 +84,7 @@ return [
 	"InsuranceValidto"=>'Insurance Valid to',
 	"PermitDoc"=>'Permit Doc',
 	"PermitValidfrom"=>'Permit Valid from',
-	"PermitValidto"=>'Permit Tax Valid to to',
+	"PermitValidto"=>'Permit Tax Valid to',
 	"TaxDoc"=>'Tax Doc',
 	"TaxValidfrom"=>'Tax Valid from',
 	"TaxValidto"=>'Tax Valid to',
@@ -102,5 +103,7 @@ return [
 	"logout"=>"Logout",
 	"home"=>"Home",
 	'compliencepages'=>'Complience Pages',
-	'generalsetting'=>'General Setting '
+	'generalsetting'=>'General Setting',
+	'VehicleImage'=>'Vehicle Image',
+	'SelectVehicleType'=>'Select Vehicle Type',
 ];
