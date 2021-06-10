@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\ContactRequest;
@@ -9,7 +7,9 @@ use App\Models\SubCategory;
 use App\Models\City;
 use App\Models\Vehicle;
 use App\Models\Driver;
+use App\Models\Notification;
 use Session;
+
 class HomeController extends Controller
 {
     public function index(){
@@ -35,6 +35,11 @@ class HomeController extends Controller
         }
 
     }
+	public function logout(Request $request)
+	{
+		$request->session()->forget('userinfo');
+		return redirect(url(''));
+	}
     public function more_details(){
 		if(!$_REQUEST){
 			return redirect(url(''));
@@ -81,7 +86,7 @@ class HomeController extends Controller
 							->where('sw_vehicle.vehicle_type_id', $data['vehicle_type'])
 							->get()->toArray();
 		}
-		// echo "<pre>"; print_r($_REQUEST); die;
+		// echo "<pre>"; print_r($vehicle); die;
         return view('more_details')->with('vehicle', $vehicle);
     }
     public function sendOtp(Request $request){
@@ -139,4 +144,27 @@ class HomeController extends Controller
         }
 
     }
+	public function notifications($type='', $id='', Request $request)
+	{
+		if($type=='skip'){
+			$row = Notification::where('id',$id)->get()->first();
+			$row->respond = 0;
+			$row->update();
+			return redirect(url('notifications'));
+		} else if($type=='accept'){
+			$row = Notification::where('id',$id)->get()->first();
+			$row->respond = 1;
+			$row->update();
+			return redirect(url('notifications'));
+		} else {
+			$user = Session::get('userinfo');
+			$data['notifications'] = Notification::select('sw_notifications.id', 'sw_notifications.payment', 'sw_driver.fname', 'sw_driver.lname', 'sw_vehicle.vehicle_no')
+									->join('sw_driver', 'sw_driver.id', '=', 'sw_notifications.driver_id')
+									->join('sw_vehicle', 'sw_vehicle.id', '=', 'sw_notifications.driver_id')
+									->where('sw_notifications.user_id',$user->id)
+									->where('sw_notifications.respond',null)
+									->get()->toArray(); // echo "<pre>"; print_r($data['notifications']); die;
+			return view('notifications', $data);
+		}
+	}
 }

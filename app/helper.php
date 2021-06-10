@@ -1,6 +1,8 @@
 <?php
 use App\Models\Setting; 
 use App\Models\VehicleType;
+use App\Models\Notification;
+
 function get_site_settings($index)
 {
 	$array = array(
@@ -18,6 +20,17 @@ function get_text($key)
 }
 function get_vehicle_type($id){
 	return VehicleType::where('status',1)->where('sub_cat_id',$id)->where('deleted_at',0)->get()->toArray();
+}
+function send_notifications($user_id, $driver_id)
+{
+	if(Notification::where('user_id',$user_id)->where('driver_id',$driver_id)->where('respond',null)->get()->first()){
+		
+	} else {
+		$save = new Notification();
+		$save->user_id = $user_id;
+		$save->driver_id = $driver_id;
+		$save->save();
+	}
 }
 function send_email($to,$from,$fromName,$subject,$htmlContent)
 {

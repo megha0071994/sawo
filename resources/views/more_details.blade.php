@@ -26,6 +26,11 @@
 								@if($vehicle)
                                 <h6>Select Vehicle</h6>
 								@foreach($vehicle as $veh)
+								@php
+								$user = Session::get('userinfo');
+								$user_id = $user->id;
+								send_notifications($user_id, $veh['driver_id'])
+								@endphp
                                 <div class="vehi listing-p">
                                     <div class="vehicle-box">
                                         <div class="vehi-img">

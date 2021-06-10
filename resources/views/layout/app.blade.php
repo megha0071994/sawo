@@ -64,9 +64,10 @@
                         <a class="nav-menu" href="{{ url('login') }}" ><img src="{{ url('/') }}/public/front-assets/images/header/login.png"
                                 alt="">Login</a>
                         @else 
-                        <a class="nav-menu" href="#" target="_blank"><img src="images/header/signup.png" alt="">Notification <span class="badge badge-light">2</span>
+                        <a class="nav-menu" href="{{ url('notifications') }}" target="_blank"><img src="images/header/signup.png" alt="">Notification <span class="badge badge-light d-none">2</span>
                             </a>
-                            <a class="nav-menu" href="{{ url('profile') }}" ><img src="images/header/login.png" alt="">Profile </a>
+						<a class="nav-menu" href="{{ url('profile') }}" ><img src="images/header/login.png" alt="">Profile </a>
+						<a class="nav-menu" href="{{ url('logout') }}" ><img src="images/header/login.png" alt="">Logout </a>
                         @endif
                     </div>
                 </div>

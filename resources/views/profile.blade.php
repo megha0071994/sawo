@@ -7,14 +7,8 @@
         <h1>{{$user_info->mobile}}</h1>
     @endif
     </div>
-    
-      
-
     <div class="container ">
         <div >
-
-
-
             <div class="row career">
                 <div class="col-md-4">
                     <img src="images/usr-pro.png" alt="" class="img-responsive">
@@ -24,13 +18,8 @@
                         <h1>Edit<span class="color"> Profile</span></h1>
                         <div class="ch-form">
                             <div class="container">
-
-
                                 <form id="contact-form" name="myForm" class="form database_operations" action="{{ url('profile') }}" role="form">
-
                                     <div class="row">
-
-
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label class="form-label" id="nameLabel" for="name"></label>
@@ -40,8 +29,6 @@
                                                     placeholder="Your name" tabindex="1">
                                             </div>
                                         </div>
-
-
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label class="form-label" id="emailLabel" for="email"></label>
@@ -49,8 +36,6 @@
                                                     placeholder="Your Email" tabindex="2">
                                             </div>
                                         </div>
-
-
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label class="form-label" id="emailLabel" for="Mobile"></label>
@@ -63,9 +48,7 @@
                                             <div class="form-group">
                                                 <label class="form-label" id="messageLabel" for="message"></label>
                                                 <textarea required rows="1" cols="60" name="address" class="form-control"
-                                                    id="message" placeholder="Your Address" tabindex="4">
-                                                {{$user_info->address}}
-                                                </textarea>
+                                                    id="message" placeholder="Your Address" tabindex="4">{{$user_info->address}}</textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
