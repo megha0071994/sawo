@@ -1,5 +1,6 @@
 @extends('layout.app')
 @section('content')
+
 <section class="more-hero">
         <div class=" container p-0">
             <div class="row">
@@ -140,7 +141,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-8 hide-mobile">
                     <div>
                         <h2 class="hero-title">No Matter Where You Travel <br> We've Got A Cab For You.</h2>
                         <p>Sawo For safe and comfortable Journeys .</p>

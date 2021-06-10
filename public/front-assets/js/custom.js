@@ -41,7 +41,7 @@ $(document).on('keyup','#from_location',function(){
     let loc = $(this).val();
     if(loc!='') {
         loc  = loc.replace(" ", "+");
-        $.get('https://maps.googleapis.com/maps/api/place/autocomplete/json?input='+loc+'&types=address&key=AIzaSyATAq7GmtDab3CM4EGNKwCqvf9lW4B4C44',function(fb){
+        $.get('https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/autocomplete/json?input='+loc+'&types=address&key=AIzaSyATAq7GmtDab3CM4EGNKwCqvf9lW4B4C44',function(fb){
             if(fb.status=='OK') {
                 $('.from_response').css({'display':'block'});
                 $('.from_response').html('');

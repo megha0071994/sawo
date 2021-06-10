@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', ['App\Http\Controllers\HomeController'::class, 'index']);
 Route::get('/cityname/{name}', ['App\Http\Controllers\HomeController'::class, 'cityname']);
 Route::get('/more-details', ['App\Http\Controllers\HomeController'::class, 'more_details']);
+Route::match(['get','post'],'/profile', ['App\Http\Controllers\HomeController'::class, 'profile']);
 Route::match(['get','post'],'/contact', ['App\Http\Controllers\HomeController'::class, 'contact']);
 Route::get('/about', function(){ return view('about'); });
 Route::get('/privacy-policy', function(){ return view('privacy-policy'); });

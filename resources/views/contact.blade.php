@@ -1,5 +1,8 @@
 @extends('layout.app')
 @section('content')
+<div class="breadcrum">
+      <h1>Contact<span class="color"> Us</span></h1>
+  </div>
 <section class="contact-bg pt-100 pb-100 ">
     <div class="container">
     <div class="row">
@@ -33,7 +36,7 @@
                                 <div class="col-md-12 ch-area">
                                     <div class="form-group">
                                         <label class="form-label" id="messageLabel" for="message"></label>
-                                        <textarea rows="3" cols="60" required="required" name="message" class="form-control" id="message" placeholder="Your message" tabindex="4"></textarea>
+                                        <textarea rows="3" cols="60" required="required" name="message" class="form-control new-t" id="message" placeholder="Your message" tabindex="4"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -52,7 +55,7 @@
         <div class="col-md-4 ">
             <div class="d-flex">
                 <div class="c-box m-2">
-                    <img src="images/contact-pin.png" alt="">
+                    <img src="{{ url('/') }}/public/front-assets/images/contact-pin.png" alt="">
                     <h4>Address</h4>
                     <h5>C21 Mall, 310 3rd floor orbit mall near, Scheme 54 PU4, Indore, Madhya Pradesh 452001</h5>
                 </div>
@@ -60,14 +63,14 @@
             </div>
             <div class="col-md-4 ">
                 <div class="c-box m-2">
-                    <img src="images/contact-email.png" alt="">
+                    <img src="{{ url('/') }}/public/front-assets/images/contact-email.png" alt="">
                     <h4>Contact</h4>
                     <h5>sawoservices@gmail.com</h5>
                 </div>
             </div>
             <div class="col-md-4 ">
                 <div class="c-box m-2">
-                    <img src="images/contact-call.png" alt="">
+                    <img src="{{ url('/') }}/public/front-assets/images/contact-call.png" alt="">
                     <h4>Mobile</h4>
                     <h5>0731 4000 308</h5>
                 </div>

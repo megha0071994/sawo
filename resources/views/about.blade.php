@@ -32,67 +32,75 @@
             </div>
         </div>
         <div class="container about-page pb-100 pt-100">
-            <div class="row py-2">
-                <div class="col-md-12 px-2">
-                    <h1 class="text-center">Our <span class="color">Values</span></h1>
-                    <p class="text-justify pb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Aliquam tempore ex reiciendis tempora quis molestias cumque veniam facilis,
-                        illo animi. Maiores quod quasi perspiciatis aut odit asperiores. Recusandae,
-                        laboriosam iste. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Aliquam tempore ex reiciendis tempora quis molestias cumque veniam facilis,
-                        illo animi. Maiores quod quasi perspiciatis aut odit asperiores. Recusandae,
-                        laboriosam isteLorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Aliquam tempore ex reiciendis tempora quis molestias cumque veniam facilis,
-                        illo animi. Maiores quod quasi perspiciatis aut odit asperiores. Recusandae,
-                        laboriosam iste.
-                        Aliquam tempore ex reiciendis tempora quis molestias cumque veniam facilis,
-                        illo animi. Maiores quod quasi perspiciatis aut odit asperiores.</p>
-                </div>
+            <div class="row">
+                        <div class="col-md-7">
+                            <h2>Redefining Mobility for Billions</h2>
+                            <p>Sawo is on things of easy way for transportation and logistics Service Provider according
+                                your business, daily need, Short root transportation, big root transportation. Sawo Provide
+                                multiple transportations, fleet services, logistic service at one place. We make easy way
+                                for your transport service including Daily car booking Service, Rental Booking service,
+                                Truck Booking and all type Machine Booking Service. We provide all type vehicle and machine
+                                at one place like all type Car, Family Car, Trucks, JCB and many more. We offer separate
+                                –separate app and web to manage all details at one application for User, driver and vendor .
+                            </p>
+                            <p>We offer all type transports service for according your business including logistics entire
+                                the India. To increase your business with single click . we have all type of vehicle and
+                                machine at one place in sawo . You can find one in just a click and can enjoy our quick and
+                                safe transport services</p>
+                            <p>We have dedicated Professional Worker for manage all type enquiry, support according your
+                                demand any time at one call </p>
+                        </div>
+                        <div class="col-md-5">
+                            <img src="{{asset('public/front-assets/images/about/cab.png')}}" width="100%"
+                                style="padding:30px 0 0">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <img src="{{asset('public/front-assets/images/about/cab1.png')}}" width="100%"
+                                style="padding: 3px;box-shadow: 0 0px 5px rgba(0,0,0,.5);margin: 30px 0;">
+                        </div>
+                    </div>
 
-            </div>
-            <div class="row py-2">
-                <div class="col-md-6 px-2">
-                    <h1>Our <span class="color">Goal</span></h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Aliquam tempore ex reiciendis tempora quis molestias cumque veniam facilis,
-                        illo animi. Maiores quod quasi perspiciatis aut odit asperiores. Recusandae,
-                        laboriosam iste. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Aliquam tempore ex reiciendis tempora quis molestias cumque veniam facilis,
-                        illo animi. Maiores quod quasi perspiciatis aut odit asperiores. Recusandae,
-                        laboriosam isteLorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Aliquam tempore ex reiciendis tempora quis molestias cumque veniam facilis,
-                        illo animi. Maiores quod quasi perspiciatis aut odit asperiores. Recusandae,
-                        laboriosam iste.
-                        Aliquam tempore ex reiciendis tempora quis molestias cumque veniam facilis,
-                        illo animi. Maiores quod quasi perspiciatis aut odit asperiores. Recusandae,
-                        laboriosam iste</p>
-                </div>
-                <div class="col-md-6  px-2">
-                    <img src="{{ url('/') }}/public/front-assets/images/driver.jpg" alt="" class="img-responsive">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h2>Our Mission</h2>
+                            <p>We provide very easy and smooth service for all our user, driver, vendor according to own
+                                area and business demand.</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h2>Our Vision</h2>
+                            <p>Every Driver and vendor make business online and bring own machine and vehicle online by sawo
+                                and make money. </p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="row py-5">
-
-                <div class="col-md-6 order px-2">
-                    <img src="{{ url('/') }}/public/front-assets/images/new-driver.jpg" alt="" class="img-responsive">
-                </div>
-                <div class="col-md-6  px-2">
-                    <h1>Our <span class="color">Mission</span></h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Aliquam tempore ex reiciendis tempora quis molestias cumque veniam facilis,
-                        illo animi. Maiores quod quasi perspiciatis aut odit asperiores. Recusandae,
-                        laboriosam iste. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Aliquam tempore ex reiciendis tempora quis molestias cumque veniam facilis,
-                        illo animi. Maiores quod quasi perspiciatis aut odit asperiores. Recusandae,
-                        laboriosam isteLorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Aliquam tempore ex reiciendis tempora quis molestias cumque veniam facilis,
-                        illo animi. Maiores quod quasi perspiciatis aut odit asperiores. Recusandae,
-                        laboriosam iste.
-                        Aliquam tempore ex reiciendis tempora quis molestias cumque veniam facilis,
-                        illo animi. Maiores quod quasi perspiciatis aut odit asperiores. Recusandae,
-                        laboriosam iste</p>
-                </div>
+        </section>
+        <section class="abo_new">
+            <div class="container">
+                <ul class="text-center what_offer">
+                    <li>
+                        <div class="img-box">
+                            <img src="{{asset('public/front-assets/images/about/track.png')}}" alt="" >
+                        </div>
+                        <p>List Your Truck and machine </p>
+                    </li>
+                    <li>
+                        <div class="img-box">
+                            <img src="{{asset('public/front-assets/images/about/client.png')}}" alt="" >
+                        </div>
+                        <p>Get unlimited Client </p>
+                    </li>
+                    <li>
+                        <div class="img-box">
+                            <img src="{{asset('public/front-assets/images/about/boost.png')}}" alt="" >
+                        </div>
+                        <p>Earn and boost Business  </p>
+                    </li>
+                </ul>
             </div>
+        </section>
         </div>
     </div>
 @endsection

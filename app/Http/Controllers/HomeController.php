@@ -87,11 +87,11 @@ class HomeController extends Controller
     public function sendOtp(Request $request){
         $user = User::where('mobile',$request->mobile)->get()->first();
         if($user) {
-            $user->otp = rand(1000,9999);
+            $user->otp = 1234; //rand(1000,9999);
             $user->update();
         } else {
             $user = new User();
-            $user->otp = rand(1000,9999);
+            $user->otp =  1234;//rand(1000,9999);
             $user->mobile = $request->mobile;
             $user->save();
         }
@@ -105,6 +105,24 @@ class HomeController extends Controller
             echo json_encode(array('status'=>'true','message'=>'Success','reload'=>url('')));
         } else {
             echo json_encode(array('status'=>'false','message'=>'Please Enter Valid OTP'));
+        }
+    }
+    public function profile(Request $request){
+        if(request()->ajax()){
+           $obj = User::where('id',Session::get('userinfo')->id)->get()->first();
+           $obj->name = $request->name;
+           $obj->email = $request->email;
+           $obj->mobile = $request->mobile;
+           $obj->address = $request->address;
+           $obj->save();
+           echo json_encode(array('status'=>'true','message'=>'Success','reload'=>url('profile')));
+        } else {
+            if(Session::get('userinfo')) {
+                $data['user_info'] = User::where('id',Session::get('userinfo')->id)->get()->first();
+                return view('profile',$data);    
+            } else {
+                return redirect(url('login'));
+            }
         }
     }
     public function contact(Request $request){

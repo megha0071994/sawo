@@ -17,7 +17,7 @@
         <div class="my-3 p-4 bg-light">
           <div class="d-flex align-items-start">
             <div class="mr-3 bg-dark text-white rounded-circle">
-             <img src="images/question-mark.png" alt="">
+             <img src="{{ url('/') }}/public/front-assets/images/question-mark.png" alt="">
             </div>
             <div class="">
               <a href="#" class="text-dark stretched-link"><h6 class="mb-3" style="font-weight: 600; font-size: 1.1rem;">What could be your first question?</h6></a>
@@ -31,7 +31,7 @@
         <div class="my-3 p-4 bg-light">
           <div class="d-flex align-items-start">
             <div class="mr-3 bg-dark text-white rounded-circle">
-                <img src="images/question-mark.png" alt="">
+                <img src="{{ url('/') }}/public/front-assets/images/question-mark.png" alt="">
             </div>
             <div class="">
               <a href="#" class="text-dark stretched-link"><h6 class="mb-3" style="font-weight: 600; font-size: 1.1rem;">What could be your 2nd question?</h6></a>
@@ -45,7 +45,7 @@
         <div class="my-3 p-4 bg-light">
           <div class="d-flex align-items-start">
             <div class="mr-3 bg-dark text-white rounded-circle">
-                <img src="images/question-mark.png" alt="">
+                <img src="{{ url('/') }}/public/front-assets/images/question-mark.png" alt="">
             </div>
             <div class="">
               <a href="#" class="text-dark stretched-link"><h6 class="mb-3" style="font-weight: 600; font-size: 1.1rem;">What could be your 3rd question?</h6></a>
@@ -59,7 +59,7 @@
         <div class="my-3 p-4 bg-light">
           <div class="d-flex align-items-start">
             <div class="mr-3 bg-dark text-white rounded-circle">
-                <img src="images/question-mark.png" alt="">
+                <img src="{{ url('/') }}/public/front-assets/images/question-mark.png" alt="">
             </div>
             <div class="">
               <a href="#" class="text-dark stretched-link"><h6 class="mb-3" style="font-weight: 600; font-size: 1.1rem;">What could be your 4th question?</h6></a>
@@ -73,7 +73,7 @@
         <div class="my-3 p-4 bg-light">
           <div class="d-flex align-items-start">
             <div class="mr-3 bg-dark text-white rounded-circle">
-                <img src="images/question-mark.png" alt="">
+                <img src="{{ url('/') }}/public/front-assets/images/question-mark.png" alt="">
             </div>
             <div class="">
               <a href="#" class="text-dark stretched-link"><h6 class="mb-3" style="font-weight: 600; font-size: 1.1rem;">What could be your 5rd question?</h6></a>
@@ -87,7 +87,7 @@
         <div class="my-3 p-4 bg-light">
           <div class="d-flex align-items-start">
             <div class="mr-3 bg-dark text-white rounded-circle">
-                <img src="images/question-mark.png" alt="">
+                <img src="{{ url('/') }}/public/front-assets/images/question-mark.png" alt="">
             </div>
             <div class="">
               <a href="#" class="text-dark stretched-link"><h6 class="mb-3" style="font-weight: 600; font-size: 1.1rem;">What could be your 6th question?</h6></a>

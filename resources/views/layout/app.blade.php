@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{ url('/') }}/public/front-assets/css/style.css">
     <!-- SWIPER SLIDER -->
     <link rel="stylesheet" href="{{ url('/') }}/public/front-assets/css/swiper.css" />
+    <link rel="icon" href="{{ url('/') }}/public/front-assets/images/icon.png" type="image/x-icon" />
     <script>
     var BASE_URL = "{{ url('/') }}";
     </script>
@@ -26,12 +27,11 @@
                     <h5 class="pl-2">Follow Us</h5>
                     <div class="social-icons">
                         <ul>
-                            <li><a href="#"><img src="{{ url('/') }}/public/front-assets/images/header/Layer-0.png" alt=""></a></li>
-                            <li><a href="#"><img src="{{ url('/') }}/public/front-assets/images/header/Layer -1.png" alt=""></a></li>
-                            <li><a href="#"><img src="{{ url('/') }}/public/front-assets/images/header/Layer -2.png" alt=""></a></li>
-                            <li><a href="#"><img src="{{ url('/') }}/public/front-assets/images/header/Layer -3.png" alt=""></a></li>
-                            <li><a href="#"><img src="{{ url('/') }}/public/front-assets/images/header/Layer -4.png" alt=""></a></li>
-                            <li><a href="#"><img src="{{ url('/') }}/public/front-assets/images/header/Layer -5.png" alt=""></a></li>
+                            <li><a href="https://www.facebook.com/Sawoservices-100796154959356"><img src="{{ url('/') }}/public/front-assets/images/header/Layer-0.png" alt=""></a></li>
+                            <li><a href="https://www.youtube.com/channel/UCffMX7LCClsVyDwA_8frlYQ/about"><img src="{{ url('/') }}/public/front-assets/images/header/Layer -1.png" alt=""></a></li>
+                            <li><a href="https://instagram.com/sawoservices?utm_medium=copy_link"><img src="{{ url('/') }}/public/front-assets/images/header/Layer -2.png" alt=""></a></li>
+                            <li><a href="https://wa.me/7685001122"><img src="{{ url('/') }}/public/front-assets/images/new-i.svg" width="18" alt=""></a></li>
+                          
                         </ul>
                     </div>
                 </div>
@@ -56,13 +56,17 @@
                     </div>
 
                     <div class="nav-links">
-                        <a class="nav-menu_call" href="#" target="_blank"><img src="{{ url('/') }}/public/front-assets/images/header/call-icon.png"
+                        <a class="nav-menu_call" href="#" ><img src="{{ url('/') }}/public/front-assets/images/header/call-icon.png"
                                 alt="">+91 76 85 00 11 22</a>
                         @if(!Session::get('userinfo'))
-                        <a class="nav-menu" href="{{ url('login') }}" target="_blank"><img src="{{ url('/') }}/public/front-assets/images/header/signup.png" alt="">Sign
+                        <a class="nav-menu" href="{{ url('login') }}" ><img src="{{ url('/') }}/public/front-assets/images/header/signup.png" alt="">Sign
                             Up</a>
-                        <a class="nav-menu" href="{{ url('login') }}" target="_blank"><img src="{{ url('/') }}/public/front-assets/images/header/login.png"
+                        <a class="nav-menu" href="{{ url('login') }}" ><img src="{{ url('/') }}/public/front-assets/images/header/login.png"
                                 alt="">Login</a>
+                        @else 
+                        <a class="nav-menu" href="#" target="_blank"><img src="images/header/signup.png" alt="">Notification <span class="badge badge-light">2</span>
+                            </a>
+                            <a class="nav-menu" href="{{ url('profile') }}" ><img src="images/header/login.png" alt="">Profile </a>
                         @endif
                     </div>
                 </div>
@@ -89,12 +93,11 @@
                             <h5 class="pl-2">Follow Us</h5>
                             <div class="social-icons">
                                 <ul>
-                                    <li><a href="#"><img src="{{ url('/') }}/public/front-assets/images/7-foot.png" alt=""></a></li>
-                                    <li><a href="#"><img src="{{ url('/') }}/public/front-assets/images/1-foot.png" alt=""></a></li>
-                                    <li><a href="#"><img src="{{ url('/') }}/public/front-assets/images/2-foot.png" alt=""></a></li>
-                                    <li><a href="#"><img src="{{ url('/') }}/public/front-assets/images/3-foot.png" alt=""></a></li>
-                                    <li><a href="#"><img src="{{ url('/') }}/public/front-assets/images/4-foot.png" alt=""></a></li>
-                                    <li><a href="#"><img src="{{ url('/') }}/public/front-assets/images/5-foot.png" alt=""></a></li>
+                                  
+                                    <li><a href="https://www.facebook.com/Sawoservices-100796154959356"><img src="{{ url('/') }}/public/front-assets/images/2-foot.png" alt=""></a></li>
+                                    <li><a href="https://www.youtube.com/channel/UCffMX7LCClsVyDwA_8frlYQ/about"><img src="{{ url('/') }}/public/front-assets/images/3-foot.png" alt=""></a></li>
+                                    <li><a href="https://instagram.com/sawoservices?utm_medium=copy_link"><img src="{{ url('/') }}/public/front-assets/images/4-foot.png" alt=""></a></li>
+                                   <li><a href="https://wa.me/7685001122"><img src="{{ url('/') }}/public/front-assets/images/g-i.svg" width="18" alt=""></a></li>
                                 </ul>
                             </div>
                         </div>

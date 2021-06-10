@@ -21,28 +21,28 @@
       
             <div class="row">
               <div class="col-md-6 px-4 my-2">
-                <img src="images/help-1.png" alt=""  >
+                <img src="{{ url('/') }}/public/front-assets/images/help-1.png" alt=""  >
                 <div class="mt-3">
                   <h5 class="mb-2"><a href="#" >User Related Support</a></h5>
                   <p class="text-secondary">For press and media related queries please reach out to</p>
                 </div>
               </div>
               <div class="col-md-6 px-4 my-2">
-                <img src="images/help-2.png" alt=""  >
+                <img src="{{ url('/') }}/public/front-assets/images/help-2.png" alt=""  >
                 <div class="mt-3">
                   <h5 class="mb-2"  ><a href="#"  >Driver Related Support</a></h5>
                   <p class="text-secondary">If you have security concerns, please report your issues with Sawo</p>
                 </div>
               </div>
               <div class="col-md-6 px-4 my-2">
-                <img src="images/help-3.png" alt=""  >
+                <img src="{{ url('/') }}/public/front-assets/images/help-3.png" alt=""  >
                 <div class="mt-3">
                   <h5 class="mb-2"  ><a href="#"  >Vendor Related Support</a></h5>
                   <p class="text-secondary">If you are a driver or a fleet manager and want to attach your vehicle with Sawo</p>
                 </div>
               </div>
               <div class="col-md-6 px-4 my-2">
-                <img src="images/help-11.png" alt=""  >
+                <img src="{{ url('/') }}/public/front-assets/images/help-11.png" alt=""  >
                 <div class="mt-3">
                   <h5 class="mb-2"  ><a href="#"  >Customer Related Offer and support</a></h5>
                   <p class="text-secondary">For support with your bookings and other queries, visit the Support section in  Sawo app</p>

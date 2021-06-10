@@ -39,3 +39,5 @@ function parallaxScroll() {
     $('.img-2').css('top', (0 - (scrolled * .05)) + 'px');
 }
 // check
+
+
