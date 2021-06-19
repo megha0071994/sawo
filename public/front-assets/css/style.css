@@ -278,6 +278,7 @@ header {
     .nav>#nav-check:checked~.nav-links {
         height: calc(100vh - 50px);
         overflow-y: auto;
+        z-index: 11111111;
     }
     .nav>.nav-links>a img {
     display: none;
@@ -607,7 +608,7 @@ header {
     border: none;
     box-shadow: 0px 1px 0px 0px;
     border-radius: 0;
-    color: #fff;
+    /*color: #fff;*/
 }
 
 .contact-home {
@@ -649,14 +650,14 @@ header {
 }
 .c-box {
     width: 100%;
-    
     background-color: #fafafa;
     display: block;
     margin-bottom: 10px;
     text-align: center;
     /* padding-top: 80px; */
-    padding: 80px;
-  
+    padding: 40px;
+    min-height: 248px;
+    box-shadow: -1px 1px 14px -13px black;
 }
 .c-box h5{
     font-size: 16px;
@@ -870,7 +871,7 @@ footer .support ul li {
 }
 
 .vehi-img {
-    width: 192px;
+    width: 115px;
     padding: 4px;
 }
 
@@ -900,7 +901,8 @@ footer .support ul li {
 }
 
 /* ****************************************************** */
-
+/*loader*/
+/**/
 .form-control:focus {
     color: #495057;
     background-color: #fff;
@@ -908,10 +910,38 @@ footer .support ul li {
     outline: 0;
     box-shadow: 0 0 0 0.2rem rgb(252 200 54 / 22%);
 }
-
+.contact-home h3{
+        color:#968989!important;
+    }
+    .new-t:focus{
+        color:#ced4da!important;
+    }
+.what_offer{
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    flex-wrap:wrap;
+}
+.abo_new{
+    background: #f1f1f2;
+    padding: 30px 20px;
+}
 /* ****************************************************** */
 
 @media (max-width: 768px) {
+    .about-page{
+         text-align:justify;
+    }
+    .help {
+        text-align:center;
+    }
+    .contact-home h1{
+        text-align:center;
+    }
+   
+    .hide-mobile{
+        display:none!important;
+    }
     .vehicle-select li a {
         color: #323232;
         font-size: 12px;
@@ -989,6 +1019,7 @@ footer .support ul li {
         border: none;
         transition: ease .6s;
         display: block;
+        width:100%;
     }
 
     .feedback-desc {
@@ -1020,7 +1051,7 @@ footer .support ul li {
 
     .contact-main {
         background-image: url(../images/contact.png);
-      background-position-x: unset;
+      background-position-x: right;
         background-position-y: -30px;
     }
    
@@ -1064,8 +1095,12 @@ footer .support ul li {
     }
 
     .more-hero {
+        background:none;
         background-repeat: repeat;
     } 
+    .banner h1,h2,h3{
+        text-align:center;
+    }
     #about-main .jumbotron{
         display: none;
     }
@@ -1135,7 +1170,7 @@ footer .support ul li {
 }
     .vehicle-box {
         display: flex;
-        width: 324px;
+        width: 281px;
         padding: 6px 0px;
         /* margin-top: 22px; */
         border: 1px solid #d6d6d6;
@@ -1478,7 +1513,7 @@ padding-left:20px;
   
     height: 734px;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: inherit;
     object-fit: cover;
 }
 .apk-btn {
@@ -1620,3 +1655,28 @@ font-family: 'poppins';
         padding:10px 0px;
         border-bottom: 1px solid #ecececfc;
     }
+    
+    
+    
+    
+    #preloader {
+	position:fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;		
+	background-color:#fff; /* change if the mask should have another color then white */
+	z-index:9999999; /* makes sure it stays on top */
+}		
+
+#status {
+	width:200px;
+	height:200px;
+	position:absolute;
+	left:50%; /* centers the loading animation horizontally one the screen */
+	top:50%; /* centers the loading animation vertically one the screen */
+	background-image:url('../images/animation_200_kprxo4l2.gif'); /* path to your loading animation */
+	background-repeat:no-repeat;
+	background-position:center;
+	margin:-100px 0 0 -100px; /* is width and height divided by two */
+}			

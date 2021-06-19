@@ -40,8 +40,9 @@ $(document).on('submit', '.database_operations', function() {
 $(document).on('keyup','#from_location',function(){
     let loc = $(this).val();
     if(loc!='') {
-        loc  = loc.replace(" ", "+");
-        $.get('https://maps.googleapis.com/maps/api/place/autocomplete/json?input='+loc+'&types=address&key=AIzaSyATAq7GmtDab3CM4EGNKwCqvf9lW4B4C44',function(fb){
+        // loc  = loc.replace(" ", "+");
+        $.get(BASE_URL+'/googleApi/'+loc,function(resp){
+			let fb =$.parseJSON(resp);
             if(fb.status=='OK') {
                 $('.from_response').css({'display':'block'});
                 $('.from_response').html('');
@@ -63,7 +64,8 @@ $(document).on('keyup','#to_location',function(){
     let loc = $(this).val();
     if(loc!='') {
         loc  = loc.replace(" ", "+");
-        $.get('https://maps.googleapis.com/maps/api/place/autocomplete/json?input='+loc+'&types=address&key=AIzaSyATAq7GmtDab3CM4EGNKwCqvf9lW4B4C44',function(fb){
+        $.get(BASE_URL+'/googleApi/'+loc,function(resp){
+			let fb =$.parseJSON(resp);
             if(fb.status=='OK') {
                 $('.to_response').css({'display':'block'});
                 $('.to_response').html('');
@@ -107,7 +109,8 @@ $(document).on('keyup','#work_location',function(){
     let loc = $(this).val();
     if(loc!='') {
         loc  = loc.replace(" ", "+");
-        $.get('https://maps.googleapis.com/maps/api/place/autocomplete/json?input='+loc+'&types=address&key=AIzaSyATAq7GmtDab3CM4EGNKwCqvf9lW4B4C44',function(fb){
+        $.get(BASE_URL+'/googleApi/'+loc,function(resp){
+			let fb =$.parseJSON(resp);
             if(fb.status=='OK') {
                 $('.work_response').css({'display':'block'});
                 $('.work_response').html('');

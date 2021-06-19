@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\ContactRequest;
@@ -9,15 +7,33 @@ use App\Models\SubCategory;
 use App\Models\City;
 use App\Models\Vehicle;
 use App\Models\Driver;
+use App\Models\Notification;
 use Session;
+
 class HomeController extends Controller
 {
     public function index(){
-        $data['subCategory'] = SubCategory::where('status','1')->where('deleted_at',0)->get()->toArray();
+		$data['subCategory'] = SubCategory::where('status','1')->where('deleted_at',0)->get()->toArray();
         $data['subCategory1'] = SubCategory::where('cat_id',1)->where('status','1')->where('deleted_at',0)->get()->toArray();
         $data['subCategory2'] = SubCategory::where('cat_id',2)->where('status','1')->where('deleted_at',0)->get()->toArray();
         return view('home',$data);
     }
+	public function googleApi($loc){
+		// echo "cvv";
+		//die();
+			$curl = curl_init();
+			// set our url with curl_setopt()
+			curl_setopt($curl, CURLOPT_URL, "https://maps.googleapis.com/maps/api/place/autocomplete/json?input=".urlencode($loc)."&types=address&key=AIzaSyBlE9Wq44Z-rwI6-QEtUGVWjZBD0rjqj58");
+			// return the transfer as a string, also with setopt()
+			curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+			// curl_exec() executes the started curl session
+			// $output contains the output string
+			$output = curl_exec($curl);
+			echo $output;
+			// close curl resource to free up system resources
+			// (deletes the variable made by curl_init)
+			curl_close($curl);
+	}
     public function cityname($name) {
         $name = trim($name);
         $City = City::where('name',$name)->get()->toArray();
@@ -35,6 +51,11 @@ class HomeController extends Controller
         }
 
     }
+	public function logout(Request $request)
+	{
+		$request->session()->forget('userinfo');
+		return redirect(url(''));
+	}
     public function more_details(){
 		if(!$_REQUEST){
 			return redirect(url(''));
@@ -81,17 +102,17 @@ class HomeController extends Controller
 							->where('sw_vehicle.vehicle_type_id', $data['vehicle_type'])
 							->get()->toArray();
 		}
-		// echo "<pre>"; print_r($_REQUEST); die;
+		// echo "<pre>"; print_r($vehicle); die;
         return view('more_details')->with('vehicle', $vehicle);
     }
     public function sendOtp(Request $request){
         $user = User::where('mobile',$request->mobile)->get()->first();
         if($user) {
-            $user->otp = rand(1000,9999);
+            $user->otp = 1234; //rand(1000,9999);
             $user->update();
         } else {
             $user = new User();
-            $user->otp = rand(1000,9999);
+            $user->otp =  1234;//rand(1000,9999);
             $user->mobile = $request->mobile;
             $user->save();
         }
@@ -102,9 +123,34 @@ class HomeController extends Controller
         $user = User::where('id',$request->user)->where('otp',$request->otp)->get()->first();
         if($user){
             Session::put('userinfo',$user);
-            echo json_encode(array('status'=>'true','message'=>'Success','reload'=>url('')));
+            $url = url('');
+            if(isset($_COOKIE['redirect_url'])){
+                $url = $_COOKIE['redirect_url'];
+                unset($_COOKIE['redirect_url']);
+                setcookie('redirect_url', null, -1, '/'); 
+            }
+            
+            echo json_encode(array('status'=>'true','message'=>'Success','reload'=>$url));
         } else {
             echo json_encode(array('status'=>'false','message'=>'Please Enter Valid OTP'));
+        }
+    }
+    public function profile(Request $request){
+        if(request()->ajax()){
+           $obj = User::where('id',Session::get('userinfo')->id)->get()->first();
+           $obj->name = $request->name;
+           $obj->email = $request->email;
+           $obj->mobile = $request->mobile;
+           $obj->address = $request->address;
+           $obj->save();
+           echo json_encode(array('status'=>'true','message'=>'Success','reload'=>url('profile')));
+        } else {
+            if(Session::get('userinfo')) {
+                $data['user_info'] = User::where('id',Session::get('userinfo')->id)->get()->first();
+                return view('profile',$data);    
+            } else {
+                return redirect(url('login'));
+            }
         }
     }
     public function contact(Request $request){
@@ -121,4 +167,27 @@ class HomeController extends Controller
         }
 
     }
+	public function notifications($type='', $id='', Request $request)
+	{
+		if($type=='skip'){
+			$row = Notification::where('id',$id)->get()->first();
+			$row->respond = 0;
+			$row->update();
+			return redirect(url('notifications'));
+		} else if($type=='accept'){
+			$row = Notification::where('id',$id)->get()->first();
+			$row->respond = 1;
+			$row->update();
+			return redirect(url('notifications'));
+		} else {
+			$user = Session::get('userinfo');
+			$data['notifications'] = Notification::select('sw_notifications.id', 'sw_notifications.payment', 'sw_driver.fname', 'sw_driver.lname', 'sw_vehicle.vehicle_no')
+									->join('sw_driver', 'sw_driver.id', '=', 'sw_notifications.driver_id')
+									->join('sw_vehicle', 'sw_vehicle.id', '=', 'sw_notifications.driver_id')
+									->where('sw_notifications.user_id',$user->id)
+									->where('sw_notifications.respond',null)
+									->get()->toArray(); // echo "<pre>"; print_r($data['notifications']); die;
+			return view('notifications', $data);
+		}
+	}
 }

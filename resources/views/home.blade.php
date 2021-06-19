@@ -1,5 +1,6 @@
 @extends('layout.app')
 @section('content')
+
 <section class="more-hero">
         <div class=" container p-0">
             <div class="row">
@@ -140,7 +141,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-8 hide-mobile">
                     <div>
                         <h2 class="hero-title">No Matter Where You Travel <br> We've Got A Cab For You.</h2>
                         <p>Sawo For safe and comfortable Journeys .</p>
@@ -184,8 +185,13 @@
             <div class="row">
 
                 <div class="col-md-6">
-                    <div class="video">
-                        <img src="{{ url('/') }}/public/front-assets/images/pngwing.com.png" alt="">
+                    <div class="video" style="position: relative;">
+                        <img src="http://sawo.in/public/front-assets/images/pngwing.com.png" alt="">
+    <video height="240" controls="" style="position: absolute;left: 14.2%;top: 9%;z-index: 1;width: 71%;height: 46%;">
+  <source src="movie.mp4" type="video/mp4">
+  <source src="movie.ogg" type="video/ogg">
+  Your browser does not support the video tag.
+</video>
                     </div>
 
                 </div>

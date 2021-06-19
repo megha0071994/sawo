@@ -39,3 +39,11 @@ function parallaxScroll() {
     $('.img-2').css('top', (0 - (scrolled * .05)) + 'px');
 }
 // check
+
+
+   $("#status").fadeIn();
+$("#preloader").fadeIn();
+$.get(url, data, function(){
+	$("#status").fadeOut();
+	$("#preloader").fadeOut();
+});

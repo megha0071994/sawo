@@ -17,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::post('/check-mobile-no', ['App\Http\Controllers\ApiController'::class, 'check_mobile_no']);
+Route::post('/resend-otp', ['App\Http\Controllers\ApiController'::class, 'resend_otp']);
+Route::get('/vehicle', ['App\Http\Controllers\ApiController'::class, 'vehicle']);
+Route::get('/vehicle-type', ['App\Http\Controllers\ApiController'::class, 'vehicle_type']);
+Route::get('/driver-doc', ['App\Http\Controllers\ApiController'::class, 'driver_doc']);

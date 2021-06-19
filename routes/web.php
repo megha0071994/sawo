@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', ['App\Http\Controllers\HomeController'::class, 'index']);
 Route::get('/cityname/{name}', ['App\Http\Controllers\HomeController'::class, 'cityname']);
 Route::get('/more-details', ['App\Http\Controllers\HomeController'::class, 'more_details']);
+Route::get('/googleApi/{text}', ['App\Http\Controllers\HomeController'::class, 'googleApi']);
+
+Route::match(['get','post'],'/profile', ['App\Http\Controllers\HomeController'::class, 'profile']);
 Route::match(['get','post'],'/contact', ['App\Http\Controllers\HomeController'::class, 'contact']);
 Route::get('/about', function(){ return view('about'); });
 Route::get('/privacy-policy', function(){ return view('privacy-policy'); });
@@ -23,9 +26,12 @@ Route::get('/faq', function(){ return view('faq'); });
 Route::get('/career', function(){ return view('career'); });
 Route::get('/help-support', function(){ return view('help-support'); });
 Route::get('/login', ['App\Http\Controllers\HomeController'::class, 'login']);
+Route::get('/logout', ['App\Http\Controllers\HomeController'::class, 'logout']);
 Route::get('/login/{id}', ['App\Http\Controllers\HomeController'::class, 'login']);
 Route::post('/sendOtp', ['App\Http\Controllers\HomeController'::class, 'sendOtp']);
 Route::post('/checkOtp',['App\Http\Controllers\HomeController'::class, 'checkOtp']);
+Route::get('/notifications', ['App\Http\Controllers\HomeController'::class, 'notifications']);
+Route::get('/notifications/{type}/{id}', ['App\Http\Controllers\HomeController'::class, 'notifications']);
 if ( file_exists( app_path( 'Http/Controllers/LocalizationController.php') ) )
 {
   Route::get('lang/{locale}', 'App\Http\Controllers\LocalizationController@lang');
